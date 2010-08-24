@@ -11,9 +11,10 @@
 
 @implementation ComRrfComponentVasController
 
-@synthesize currentQuestion,delegate,definition,mainLog,crashLog,subject,text,slider,leftPrompt,middlePrompt,rightPrompt,button;
-
+@synthesize currentQuestion,errorLog,delegate,definition,text,slider,leftPrompt,middlePrompt,rightPrompt,button;
+#pragma mark HOUSEKEEPING
 - (void)dealloc {
+    [errorLog release];
     [questions release];
     [super dealloc];
 }
@@ -48,29 +49,27 @@
     [self next];
 }
 
-- (void)end {
-    // TODO: remove crash recovery file and append to datafile
-    [delegate end];
-}
-
 - (BOOL)isClearedToBegin {
     if(questions) { // questions loaded successfully
-        return [delegate isClearedToBegin];
+        return YES;
     } else { // questions not loaded
-        NSString *err = [[NSString stringWithFormat:@"Could not load questions at path: %@",[definition valueForKey:TKVasQuestionFileKey]] retain];
-        [delegate throwError:[err autorelease] andBreak:YES];
+        [self registerError:[NSString stringWithFormat:@"Could not load questions at path: %@",[definition valueForKey:TKVasQuestionFileKey]]];
         return NO;
     }
 }
 
 - (void)logEvent {
-    NSString *logString = [[NSString stringWithFormat:@"%d\t%@\t%d\t%d.%06d\t%@",
-                            questionCount,
-                            [currentQuestion uid],
-                            [slider integerValue],
-                            questionDuration.seconds, questionDuration.microseconds,
-                            [currentQuestion text]] retain];
-    [mainLog queueLogMessage:DATADIRECTORY file:DATAFILE contentsOfString:[logString autorelease] overWriteOnFirstWrite:NO];
+    NSString *logString = [NSString stringWithFormat:@"%d\t%@\t%d\t%d.%06d\t%@",
+                           questionCount,
+                           [currentQuestion uid],
+                           [slider integerValue],
+                           questionDuration.seconds, questionDuration.microseconds,
+                           [currentQuestion text]];
+    [delegate logString:logString];
+}
+
+- (NSView *)mainView {
+    return view;
 }
 
 - (void)next {
@@ -87,10 +86,47 @@
         // mark start time
         questionStartTime = current_time_marker();
     } else {
-        [self end];
+        [delegate componentDidFinish:self];
     }
 }
 
+- (void)registerError: (NSString *)theError {
+    NSString *old = errorLog;
+    errorLog = [[[old stringByAppendingString:theError] stringByAppendingString:@"\n"] retain];
+    [old release];
+}
+
+- (void)setup {
+    
+    /** Load Questions */
+    questions = [[TKQuestionSet questionSetFromFile:[definition valueForKey:TKVasQuestionFileKey]
+                                  usingAccessMethod:[[definition valueForKey:TKVasQuestionAccessMethodKey] unsignedIntValue]] retain];
+    
+    questionCount = 0;
+    if([[definition valueForKey:TKVasNumberOfIntededQuestionsKey] integerValue] == 0) {
+        // ask all the questions in the set
+        targetQuestionCount = [questions count];
+    } else {
+        targetQuestionCount = [[definition valueForKey:TKVasNumberOfIntededQuestionsKey] integerValue];
+    }
+    
+    /** Load Nib */
+    if([NSBundle loadNibNamed:ComRrfComponentVasControllerNibName owner:self]) {
+        // continue as is
+    } else {
+        [self registerError:@"Could not load Nib file"];
+    }
+    
+    /** Configure Interface */
+    [slider setNumberOfTickMarks:[[definition valueForKey:TKVasNumberOfTickMarksKey] integerValue]];
+    [slider setMinValue:[[definition valueForKey:TKVasMinValueKey] doubleValue]];
+    [slider setMaxValue:[[definition valueForKey:TKVasMaxValueKey] doubleValue]];
+    [leftPrompt setStringValue:[definition valueForKey:TKVasLeftPromptKey]];
+    [middlePrompt setStringValue:[definition valueForKey:TKVasMiddlePromptKey]];
+    [rightPrompt setStringValue:[definition valueForKey:TKVasRightPromptKey]];
+    
+}
+    
 - (IBAction)sliderHasMoved: (id)sender {
     [button setEnabled:YES];
 }
@@ -100,7 +136,11 @@
     [self logEvent];
     [self next];
 }
-    
+
+- (void)tearDown {
+    // nothing needed
+}
+
 @end
 
 NSString * const TKVasQuestionFileKey = @"TKVasQuestionFile";

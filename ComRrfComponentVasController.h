@@ -9,43 +9,41 @@
 #import <Cocoa/Cocoa.h>
 #import <TKUtility/TKUtility.h>
 
+#define ComRrfComponentVasControllerNibName @"ComRrfComponentVasNib"
 
-
-@interface ComRrfComponentVasController : NSObject {
+@interface ComRrfComponentVasController : NSObject <TKComponentBundleLoading> {
 
     /** INTERNAL ELEMENTS */
     NSInteger                                       targetQuestionCount;
     NSInteger                                       questionCount;
+    NSString                                        *errorLog;
     TKQuestionSet                                   *questions;
     TKQuestion                                      *currentQuestion;
     TKTime                                          questionStartTime;
     TKTime                                          questionDuration;
 
     /** REFERENCED ELEMENTS */
-    IBOutlet TKComponentController                  *delegate;
-    IBOutlet NSDictionary                           *definition;
-    IBOutlet TKLogging                              *mainLog;
-    IBOutlet TKLogging                              *crashLog;
-    IBOutlet TKSubject                              *subject;
+    id <TKComponentBundleDelegate>                  delegate;
+    NSDictionary                                    *definition;
     
     /** UI ELEMENTS */
+    IBOutlet NSView                                 *view;
     IBOutlet NSTextField                            *text;
     IBOutlet NSSlider                               *slider;    
     IBOutlet NSTextField                            *leftPrompt;
     IBOutlet NSTextField                            *middlePrompt;
     IBOutlet NSTextField                            *rightPrompt;
     IBOutlet NSButton                               *button;
+    
 }
 
 /** INTERNAL ELEMENTS */
 @property (retain) TKQuestion                       *currentQuestion;
+@property (readonly) NSString                       *errorLog;
 
 /** REFERENCED ELEMENTS */
-@property (assign) IBOutlet TKComponentController   *delegate;
-@property (assign) IBOutlet NSDictionary            *definition;
-@property (assign) IBOutlet TKLogging               *mainLog;
-@property (assign) IBOutlet TKLogging               *crashLog;
-@property (assign) IBOutlet TKSubject               *subject;
+@property (assign) TKComponentController            *delegate;
+@property (assign) NSDictionary                     *definition;
 
 /** UI ELEMENTS */
 @property (assign) IBOutlet NSTextField             *text;
@@ -55,22 +53,7 @@
 @property (assign) IBOutlet NSTextField             *rightPrompt;
 @property (assign) IBOutlet NSButton                *button;
 
-
-/**
- Starts the component
- */
-- (void)begin;
-
-/**
- Ends the component gracefully. Should be called internally in most cases.
- */
-- (void)end;
-
-/**
- Returns YES if questions have loaded and super is also cleared to begin
- */
-- (BOOL)isClearedToBegin;
-
+#pragma mark Interface
 /**
  Subject has moved the slider
  */
@@ -80,6 +63,13 @@
  Subject has submit response to question
  */
 - (IBAction)submit: (id)sender;
+
+#pragma mark Protocol
+- (void)begin;
+- (BOOL)isClearedToBegin;
+- (NSView *)mainView;
+- (void)setup;
+- (void)tearDown;
 
 @end
 
@@ -104,8 +94,7 @@ enum {
 
 /** Private Methods -- should not be called from outside of class */
 @interface ComRrfComponentVasController (ComRrfComponentVasControllerPrivate)
-
 - (void)next;
 - (void)logEvent;
-
+- (void)registerError: (NSString *)theError;
 @end

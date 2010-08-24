@@ -58,7 +58,6 @@
 			isa = PBXGroup;
 			children = (
 				1058C7ACFEA557BF11CA2CBB /* Linked Frameworks */,
-				404A776A1222D15300B4CD5B /* TKUtility.framework */,
 				1058C7AEFEA557BF11CA2CBB /* Other Frameworks */,
 			);
 			name = "Frameworks and Libraries";
@@ -87,6 +86,7 @@
 			isa = PBXGroup;
 			children = (
 				1058C7ADFEA557BF11CA2CBB /* Cocoa.framework */,
+				404A776A1222D15300B4CD5B /* TKUtility.framework */,
 			);
 			name = "Linked Frameworks";
 			sourceTree = "<group>";

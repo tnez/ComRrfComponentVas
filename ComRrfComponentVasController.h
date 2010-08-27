@@ -9,8 +9,6 @@
 #import <Cocoa/Cocoa.h>
 #import <TKUtility/TKUtility.h>
 
-#define ComRrfComponentVasControllerNibName @"ComRrfComponentVasNib"
-
 @interface ComRrfComponentVasController : NSObject <TKComponentBundleLoading> {
 
     /** INTERNAL ELEMENTS */
@@ -68,7 +66,10 @@
 - (void)begin;
 - (BOOL)isClearedToBegin;
 - (NSView *)mainView;
+- (NSString *)rawDataFile;
+- (void)recover;
 - (void)setup;
+- (BOOL)shouldRecover;
 - (void)tearDown;
 
 @end
@@ -83,6 +84,9 @@ extern NSString * const TKVasMiddlePromptKey;
 extern NSString * const TKVasRightPromptKey;
 extern NSString * const TKVasMinValueKey;
 extern NSString * const TKVasMaxValueKey;
+
+#pragma mark Internal Strings
+extern NSString * const ComRrfComponentVasControllerNibName;
 
 #pragma mark Enumerated Values
 enum {

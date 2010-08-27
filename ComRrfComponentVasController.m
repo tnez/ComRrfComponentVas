@@ -12,52 +12,25 @@
 @implementation ComRrfComponentVasController
 
 @synthesize currentQuestion,errorLog,delegate,definition,text,slider,leftPrompt,middlePrompt,rightPrompt,button;
-#pragma mark HOUSEKEEPING
+
+#pragma mark Housekeeping
 - (void)dealloc {
     [errorLog release];
     [questions release];
     [super dealloc];
 }
 
-- (void)awakeFromNib {
-
-    // load questions
-    questions = [[TKQuestionSet questionSetFromFile:[definition valueForKey:TKVasQuestionFileKey]
-                                  usingAccessMethod:[[definition valueForKey:TKVasQuestionAccessMethodKey] unsignedIntValue]] retain];
-
-    questionCount = 0;
-    if([[definition valueForKey:TKVasNumberOfIntededQuestionsKey] integerValue] == 0) {
-        // ask all the questions in the set
-        targetQuestionCount = [questions count];
-    } else {
-        targetQuestionCount = [[definition valueForKey:TKVasNumberOfIntededQuestionsKey] integerValue];
-    }
-
-    // configure interface elements
-    [slider setNumberOfTickMarks:[[definition valueForKey:TKVasNumberOfTickMarksKey] integerValue]];
-    [slider setMinValue:[[definition valueForKey:TKVasMinValueKey] doubleValue]];
-    [slider setMaxValue:[[definition valueForKey:TKVasMaxValueKey] doubleValue]];
-    [leftPrompt setStringValue:[definition valueForKey:TKVasLeftPromptKey]];
-    [middlePrompt setStringValue:[definition valueForKey:TKVasMiddlePromptKey]];
-    [rightPrompt setStringValue:[definition valueForKey:TKVasRightPromptKey]];
-    
-    [self begin];
-    
+#pragma mark User Interface
+- (IBAction)sliderHasMoved: (id)sender {
+    [button setEnabled:YES];
 }
-
-- (void)begin {
+- (IBAction)submit: (id)sender {
+    questionDuration = time_since(questionStartTime);
+    [self logEvent];
     [self next];
 }
 
-- (BOOL)isClearedToBegin {
-    if(questions) { // questions loaded successfully
-        return YES;
-    } else { // questions not loaded
-        [self registerError:[NSString stringWithFormat:@"Could not load questions at path: %@",[definition valueForKey:TKVasQuestionFileKey]]];
-        return NO;
-    }
-}
-
+#pragma mark Internal Logic
 - (void)logEvent {
     NSString *logString = [NSString stringWithFormat:@"%d\t%@\t%d\t%d.%06d\t%@",
                            questionCount,
@@ -65,13 +38,8 @@
                            [slider integerValue],
                            questionDuration.seconds, questionDuration.microseconds,
                            [currentQuestion text]];
-    [delegate logString:logString];
+    [delegate logStringToDefaultTempFile:logString];
 }
-
-- (NSView *)mainView {
-    return view;
-}
-
 - (void)next {
     // release old question
     [currentQuestion release];
@@ -89,60 +57,75 @@
         [delegate componentDidFinish:self];
     }
 }
-
 - (void)registerError: (NSString *)theError {
     NSString *old = errorLog;
     errorLog = [[[old stringByAppendingString:theError] stringByAppendingString:@"\n"] retain];
     [old release];
 }
 
+#pragma mark Component Protocol
+- (void)begin {
+    [self next];
+}
+- (BOOL)isClearedToBegin {
+    if([errorLog length] > 0) { // errors have been logged
+        return NO;
+    } else { // no errors have been logged
+        return YES;
+    }
+}
+- (NSView *)mainView {
+    return view;
+}
+- (NSString *)rawDataFile {
+    return [delegate defaultTempFile];
+}
+- (void)recover {
+    // TODO: implement crash recovery
+}
 - (void)setup {
+    
+    /** Reset Error Log */
+    errorLog = nil;
     
     /** Load Questions */
     questions = [[TKQuestionSet questionSetFromFile:[definition valueForKey:TKVasQuestionFileKey]
                                   usingAccessMethod:[[definition valueForKey:TKVasQuestionAccessMethodKey] unsignedIntValue]] retain];
-    
-    questionCount = 0;
-    if([[definition valueForKey:TKVasNumberOfIntededQuestionsKey] integerValue] == 0) {
-        // ask all the questions in the set
-        targetQuestionCount = [questions count];
-    } else {
-        targetQuestionCount = [[definition valueForKey:TKVasNumberOfIntededQuestionsKey] integerValue];
+    if(questions) { // if questions loaded
+        questionCount = 0;
+        if([[definition valueForKey:TKVasNumberOfIntededQuestionsKey] integerValue] == 0) {
+            // ask all the questions in the set
+            targetQuestionCount = [questions count];
+        } else {
+            targetQuestionCount = [[definition valueForKey:TKVasNumberOfIntededQuestionsKey] integerValue];
+        }
+    } else { //questions did not load
+        [self registerError:[NSString stringWithFormat:@"Could not load questions from file:%@",[definition valueForKey:TKVasQuestionFileKey]]];
     }
     
     /** Load Nib */
     if([NSBundle loadNibNamed:ComRrfComponentVasControllerNibName owner:self]) {
-        // continue as is
-    } else {
+        /** Configure Interface */
+        [slider setNumberOfTickMarks:[[definition valueForKey:TKVasNumberOfTickMarksKey] integerValue]];
+        [slider setMinValue:[[definition valueForKey:TKVasMinValueKey] doubleValue]];
+        [slider setMaxValue:[[definition valueForKey:TKVasMaxValueKey] doubleValue]];
+        [leftPrompt setStringValue:[definition valueForKey:TKVasLeftPromptKey]];
+        [middlePrompt setStringValue:[definition valueForKey:TKVasMiddlePromptKey]];
+        [rightPrompt setStringValue:[definition valueForKey:TKVasRightPromptKey]];
+    } else { // nib did not load
         [self registerError:@"Could not load Nib file"];
     }
-    
-    /** Configure Interface */
-    [slider setNumberOfTickMarks:[[definition valueForKey:TKVasNumberOfTickMarksKey] integerValue]];
-    [slider setMinValue:[[definition valueForKey:TKVasMinValueKey] doubleValue]];
-    [slider setMaxValue:[[definition valueForKey:TKVasMaxValueKey] doubleValue]];
-    [leftPrompt setStringValue:[definition valueForKey:TKVasLeftPromptKey]];
-    [middlePrompt setStringValue:[definition valueForKey:TKVasMiddlePromptKey]];
-    [rightPrompt setStringValue:[definition valueForKey:TKVasRightPromptKey]];
-    
 }
-    
-- (IBAction)sliderHasMoved: (id)sender {
-    [button setEnabled:YES];
+- (BOOL)shouldRecover {
+    return [[NSFileManager defaultManager] fileExistsAtPath:[delegate defaultTempFile]];
 }
-
-- (IBAction)submit: (id)sender {
-    questionDuration = time_since(questionStartTime);
-    [self logEvent];
-    [self next];
-}
-
 - (void)tearDown {
-    // nothing needed
+    // remove temporary data file
+    [[NSFileManager defaultManager] removeItemAtPath:[[delegate tempDirectory] stringByAppendingPathComponent:[delegate defaultTempFile]] error:NULL];
 }
-
 @end
 
+#pragma mark Preference Keys
 NSString * const TKVasQuestionFileKey = @"TKVasQuestionFile";
 NSString * const TKVasQuestionAccessMethodKey = @"TKVasQuestionAccessMethod";
 NSString * const TKVasNumberOfIntededQuestionsKey = @"TKVasNumberOfIntendedQuestions";
@@ -152,3 +135,4 @@ NSString * const TKVasMiddlePromptKey = @"TKVasMiddlePromptKey";
 NSString * const TKVasRightPromptKey = @"TKVasRightPromptKey";
 NSString * const TKVasMinValueKey = @"TKVasMinValueKey";
 NSString * const TKVasMaxValueKey = @"TKVasMaxValueKey";
+NSString * const ComRrfComponentVasControllerNibName = @"ComRrfComponentVasControllerMainNib";

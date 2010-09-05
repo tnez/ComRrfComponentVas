@@ -104,7 +104,7 @@
     }
     
     /** Load Nib */
-    if([NSBundle loadNibNamed:ComRrfComponentVasControllerNibName owner:self]) {
+    if([NSBundle loadNibNamed:ComRrfComponentVasNibName owner:self]) {
         /** Configure Interface */
         [slider setNumberOfTickMarks:[[definition valueForKey:TKVasNumberOfTickMarksKey] integerValue]];
         [slider setMinValue:[[definition valueForKey:TKVasMinValueKey] doubleValue]];
@@ -135,4 +135,4 @@ NSString * const TKVasMiddlePromptKey = @"TKVasMiddlePromptKey";
 NSString * const TKVasRightPromptKey = @"TKVasRightPromptKey";
 NSString * const TKVasMinValueKey = @"TKVasMinValueKey";
 NSString * const TKVasMaxValueKey = @"TKVasMaxValueKey";
-NSString * const ComRrfComponentVasControllerNibName = @"ComRrfComponentVasControllerMainNib";
+NSString * const ComRrfComponentVasNibName = @"ComRrfComponentVasMainNib";

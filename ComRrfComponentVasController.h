@@ -86,7 +86,7 @@ extern NSString * const TKVasMinValueKey;
 extern NSString * const TKVasMaxValueKey;
 
 #pragma mark Internal Strings
-extern NSString * const ComRrfComponentVasControllerNibName;
+extern NSString * const ComRrfComponentVasNibName;
 
 #pragma mark Enumerated Values
 enum {

@@ -10,6 +10,7 @@
 		404A77641222BD2D00B4CD5B /* manifest.plist in Resources */ = {isa = PBXBuildFile; fileRef = 404A77631222BD2D00B4CD5B /* manifest.plist */; };
 		404A77691222D00400B4CD5B /* ComRrfComponentVasController.m in Sources */ = {isa = PBXBuildFile; fileRef = 404A77681222D00400B4CD5B /* ComRrfComponentVasController.m */; };
 		404A776B1222D15300B4CD5B /* TKUtility.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 404A776A1222D15300B4CD5B /* TKUtility.framework */; };
+		40E6820F12342157004E2CB0 /* ComRrfComponentVasMainNib.xib in Resources */ = {isa = PBXBuildFile; fileRef = 40E6820E12342157004E2CB0 /* ComRrfComponentVasMainNib.xib */; };
 		8D5B49B0048680CD000E48DA /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C167DFE841241C02AAC07 /* InfoPlist.strings */; };
 		8D5B49B4048680CD000E48DA /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7ADFEA557BF11CA2CBB /* Cocoa.framework */; };
 /* End PBXBuildFile section */
@@ -24,6 +25,7 @@
 		404A77671222D00400B4CD5B /* ComRrfComponentVasController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ComRrfComponentVasController.h; sourceTree = "<group>"; };
 		404A77681222D00400B4CD5B /* ComRrfComponentVasController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ComRrfComponentVasController.m; sourceTree = "<group>"; };
 		404A776A1222D15300B4CD5B /* TKUtility.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = TKUtility.framework; path = "../../TK-Utility/build/Release/TKUtility.framework"; sourceTree = SOURCE_ROOT; };
+		40E6820E12342157004E2CB0 /* ComRrfComponentVasMainNib.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ComRrfComponentVasMainNib.xib; sourceTree = "<group>"; };
 		8D5B49B6048680CD000E48DA /* ComRrfComponentVas.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ComRrfComponentVas.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
 		8D5B49B7048680CD000E48DA /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D2F7E65807B2D6F200F64583 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = /System/Library/Frameworks/CoreData.framework; sourceTree = "<absolute>"; };
@@ -69,6 +71,7 @@
 				8D5B49B7048680CD000E48DA /* Info.plist */,
 				089C167DFE841241C02AAC07 /* InfoPlist.strings */,
 				404A77631222BD2D00B4CD5B /* manifest.plist */,
+				40E6820E12342157004E2CB0 /* ComRrfComponentVasMainNib.xib */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -162,6 +165,7 @@
 			files = (
 				8D5B49B0048680CD000E48DA /* InfoPlist.strings in Resources */,
 				404A77641222BD2D00B4CD5B /* manifest.plist in Resources */,
+				40E6820F12342157004E2CB0 /* ComRrfComponentVasMainNib.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

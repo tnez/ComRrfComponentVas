@@ -9,11 +9,35 @@
 /* Begin PBXBuildFile section */
 		404A77641222BD2D00B4CD5B /* manifest.plist in Resources */ = {isa = PBXBuildFile; fileRef = 404A77631222BD2D00B4CD5B /* manifest.plist */; };
 		404A77691222D00400B4CD5B /* ComRrfComponentVasController.m in Sources */ = {isa = PBXBuildFile; fileRef = 404A77681222D00400B4CD5B /* ComRrfComponentVasController.m */; };
-		404A776B1222D15300B4CD5B /* TKUtility.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 404A776A1222D15300B4CD5B /* TKUtility.framework */; };
+		404A776B1222D15300B4CD5B /* TKUtility.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 404A776A1222D15300B4CD5B /* TKUtility.framework */; };
+		40DAF158123537F40003B6F9 /* TKUtility.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 404A776A1222D15300B4CD5B /* TKUtility.framework */; };
 		40E6820F12342157004E2CB0 /* ComRrfComponentVasMainNib.xib in Resources */ = {isa = PBXBuildFile; fileRef = 40E6820E12342157004E2CB0 /* ComRrfComponentVasMainNib.xib */; };
 		8D5B49B0048680CD000E48DA /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C167DFE841241C02AAC07 /* InfoPlist.strings */; };
 		8D5B49B4048680CD000E48DA /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7ADFEA557BF11CA2CBB /* Cocoa.framework */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		40DAF142123536EB0003B6F9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 089C1669FE841209C02AAC07 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8D5B49AC048680CD000E48DA /* ComRrfComponentVas */;
+			remoteInfo = ComRrfComponentVas;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		40DAF141123536DB0003B6F9 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				404A776B1222D15300B4CD5B /* TKUtility.framework in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		089C1672FE841209C02AAC07 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
@@ -24,7 +48,9 @@
 		404A77631222BD2D00B4CD5B /* manifest.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = manifest.plist; sourceTree = "<group>"; };
 		404A77671222D00400B4CD5B /* ComRrfComponentVasController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ComRrfComponentVasController.h; sourceTree = "<group>"; };
 		404A77681222D00400B4CD5B /* ComRrfComponentVasController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ComRrfComponentVasController.m; sourceTree = "<group>"; };
-		404A776A1222D15300B4CD5B /* TKUtility.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = TKUtility.framework; path = "../../TK-Utility/build/Release/TKUtility.framework"; sourceTree = SOURCE_ROOT; };
+		404A776A1222D15300B4CD5B /* TKUtility.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = TKUtility.framework; path = ../../TKUtility/build/Release/TKUtility.framework; sourceTree = SOURCE_ROOT; };
+		40DAF11B123536240003B6F9 /* MockApplication.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = MockApplication.app; path = build/Debug/MockApplication.app; sourceTree = "<group>"; };
+		40DAF11D123536240003B6F9 /* MockApplication-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "MockApplication-Info.plist"; sourceTree = "<group>"; };
 		40E6820E12342157004E2CB0 /* ComRrfComponentVasMainNib.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ComRrfComponentVasMainNib.xib; sourceTree = "<group>"; };
 		8D5B49B6048680CD000E48DA /* ComRrfComponentVas.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ComRrfComponentVas.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
 		8D5B49B7048680CD000E48DA /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -32,12 +58,19 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		40DAF119123536240003B6F9 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		8D5B49B3048680CD000E48DA /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				8D5B49B4048680CD000E48DA /* Cocoa.framework in Frameworks */,
-				404A776B1222D15300B4CD5B /* TKUtility.framework in Frameworks */,
+				40DAF158123537F40003B6F9 /* TKUtility.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -52,6 +85,7 @@
 				089C167CFE841241C02AAC07 /* Resources */,
 				089C1671FE841209C02AAC07 /* Frameworks and Libraries */,
 				19C28FB8FE9D52D311CA2CBB /* Products */,
+				40DAF11D123536240003B6F9 /* MockApplication-Info.plist */,
 			);
 			name = ComRrfComponentVas;
 			sourceTree = "<group>";
@@ -108,6 +142,7 @@
 			isa = PBXGroup;
 			children = (
 				8D5B49B6048680CD000E48DA /* ComRrfComponentVas.bundle */,
+				40DAF11B123536240003B6F9 /* MockApplication.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -123,6 +158,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		40DAF11A123536240003B6F9 /* MockApplication */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 40DAF120123536250003B6F9 /* Build configuration list for PBXNativeTarget "MockApplication" */;
+			buildPhases = (
+				40DAF117123536240003B6F9 /* Resources */,
+				40DAF118123536240003B6F9 /* Sources */,
+				40DAF119123536240003B6F9 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				40DAF143123536EB0003B6F9 /* PBXTargetDependency */,
+			);
+			name = MockApplication;
+			productName = MockApplication;
+			productReference = 40DAF11B123536240003B6F9 /* MockApplication.app */;
+			productType = "com.apple.product-type.application";
+		};
 		8D5B49AC048680CD000E48DA /* ComRrfComponentVas */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 1DEB913A08733D840010E9CD /* Build configuration list for PBXNativeTarget "ComRrfComponentVas" */;
@@ -130,6 +183,7 @@
 				8D5B49AF048680CD000E48DA /* Resources */,
 				8D5B49B1048680CD000E48DA /* Sources */,
 				8D5B49B3048680CD000E48DA /* Frameworks */,
+				40DAF141123536DB0003B6F9 /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -154,11 +208,19 @@
 			projectRoot = "";
 			targets = (
 				8D5B49AC048680CD000E48DA /* ComRrfComponentVas */,
+				40DAF11A123536240003B6F9 /* MockApplication */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		40DAF117123536240003B6F9 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		8D5B49AF048680CD000E48DA /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -172,6 +234,13 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		40DAF118123536240003B6F9 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		8D5B49B1048680CD000E48DA /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -181,6 +250,14 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		40DAF143123536EB0003B6F9 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8D5B49AC048680CD000E48DA /* ComRrfComponentVas */;
+			targetProxy = 40DAF142123536EB0003B6F9 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		089C167DFE841241C02AAC07 /* InfoPlist.strings */ = {
@@ -202,6 +279,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/../../TK-Utility/build/Release\"",
+					"\"$(SRCROOT)/../../TKUtility/build/Release\"",
 				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_FIX_AND_CONTINUE = YES;
@@ -224,6 +302,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/../../TK-Utility/build/Release\"",
+					"\"$(SRCROOT)/../../TKUtility/build/Release\"",
 				);
 				GCC_MODEL_TUNING = G5;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -261,6 +340,54 @@
 			};
 			name = Release;
 		};
+		40DAF11E123536250003B6F9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_MODEL_TUNING = G5;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
+				INFOPLIST_FILE = "MockApplication-Info.plist";
+				INSTALL_PATH = "$(HOME)/Applications";
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					AppKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = MockApplication;
+			};
+			name = Debug;
+		};
+		40DAF11F123536250003B6F9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_MODEL_TUNING = G5;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
+				INFOPLIST_FILE = "MockApplication-Info.plist";
+				INSTALL_PATH = "$(HOME)/Applications";
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					AppKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = MockApplication;
+				ZERO_LINK = NO;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -278,6 +405,15 @@
 			buildConfigurations = (
 				1DEB913F08733D840010E9CD /* Debug */,
 				1DEB914008733D840010E9CD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		40DAF120123536250003B6F9 /* Build configuration list for PBXNativeTarget "MockApplication" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				40DAF11E123536250003B6F9 /* Debug */,
+				40DAF11F123536250003B6F9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

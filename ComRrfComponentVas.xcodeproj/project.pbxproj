@@ -11,6 +11,23 @@
 		404A77691222D00400B4CD5B /* ComRrfComponentVasController.m in Sources */ = {isa = PBXBuildFile; fileRef = 404A77681222D00400B4CD5B /* ComRrfComponentVasController.m */; };
 		404A776B1222D15300B4CD5B /* TKUtility.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 404A776A1222D15300B4CD5B /* TKUtility.framework */; };
 		40DAF158123537F40003B6F9 /* TKUtility.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 404A776A1222D15300B4CD5B /* TKUtility.framework */; };
+		40DAF181123538C90003B6F9 /* MockApplication.xib in Resources */ = {isa = PBXBuildFile; fileRef = 40DAF180123538C90003B6F9 /* MockApplication.xib */; };
+		40DAF18412353FD40003B6F9 /* StringOption.xib in Resources */ = {isa = PBXBuildFile; fileRef = 40DAF18312353FD40003B6F9 /* StringOption.xib */; };
+		40DAF1881235430F0003B6F9 /* PathOption.xib in Resources */ = {isa = PBXBuildFile; fileRef = 40DAF1871235430F0003B6F9 /* PathOption.xib */; };
+		40DAF197123543BE0003B6F9 /* NumberOption.xib in Resources */ = {isa = PBXBuildFile; fileRef = 40DAF196123543BE0003B6F9 /* NumberOption.xib */; };
+		40DAF199123544000003B6F9 /* EnumOption.xib in Resources */ = {isa = PBXBuildFile; fileRef = 40DAF198123544000003B6F9 /* EnumOption.xib */; };
+		40DAF19B123544880003B6F9 /* BooleanOption.xib in Resources */ = {isa = PBXBuildFile; fileRef = 40DAF19A123544880003B6F9 /* BooleanOption.xib */; };
+		40DAF1A212355E210003B6F9 /* TKComponentBooleanOption.m in Sources */ = {isa = PBXBuildFile; fileRef = 40DAF1A112355E210003B6F9 /* TKComponentBooleanOption.m */; };
+		40DAF1AC123563C30003B6F9 /* TKComponentEnumOption.m in Sources */ = {isa = PBXBuildFile; fileRef = 40DAF1AB123563C30003B6F9 /* TKComponentEnumOption.m */; };
+		40DAF1AF123564810003B6F9 /* TKComponentOption.m in Sources */ = {isa = PBXBuildFile; fileRef = 40DAF1AE123564810003B6F9 /* TKComponentOption.m */; };
+		40DAF1C212359CE40003B6F9 /* TKComponentStringOption.m in Sources */ = {isa = PBXBuildFile; fileRef = 40DAF1C112359CE40003B6F9 /* TKComponentStringOption.m */; };
+		40DAF1E2123640290003B6F9 /* TKComponentNumberOption.m in Sources */ = {isa = PBXBuildFile; fileRef = 40DAF1E1123640290003B6F9 /* TKComponentNumberOption.m */; };
+		40DAF1E7123649A20003B6F9 /* TKComponentPathOption.m in Sources */ = {isa = PBXBuildFile; fileRef = 40DAF1E6123649A20003B6F9 /* TKComponentPathOption.m */; };
+		40DAF26A12365C600003B6F9 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 40DAF26912365C600003B6F9 /* main.m */; };
+		40DAF27E123666150003B6F9 /* TKComponentConfigurationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 40DAF27D123666150003B6F9 /* TKComponentConfigurationView.m */; };
+		40DAF2A112366F630003B6F9 /* Mock_AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 40DAF2A012366F630003B6F9 /* Mock_AppDelegate.m */; };
+		40DAF30712367A770003B6F9 /* ComRrfComponentVas.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 8D5B49B6048680CD000E48DA /* ComRrfComponentVas.bundle */; };
+		40DAF33212367CA50003B6F9 /* ComRrfComponentVas.bundle in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8D5B49B6048680CD000E48DA /* ComRrfComponentVas.bundle */; };
 		40E6820F12342157004E2CB0 /* ComRrfComponentVasMainNib.xib in Resources */ = {isa = PBXBuildFile; fileRef = 40E6820E12342157004E2CB0 /* ComRrfComponentVasMainNib.xib */; };
 		8D5B49B0048680CD000E48DA /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C167DFE841241C02AAC07 /* InfoPlist.strings */; };
 		8D5B49B4048680CD000E48DA /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7ADFEA557BF11CA2CBB /* Cocoa.framework */; };
@@ -37,6 +54,16 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		40DAF32F12367C830003B6F9 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				40DAF33212367CA50003B6F9 /* ComRrfComponentVas.bundle in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
@@ -51,6 +78,29 @@
 		404A776A1222D15300B4CD5B /* TKUtility.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = TKUtility.framework; path = ../../TKUtility/build/Release/TKUtility.framework; sourceTree = SOURCE_ROOT; };
 		40DAF11B123536240003B6F9 /* MockApplication.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = MockApplication.app; path = build/Debug/MockApplication.app; sourceTree = "<group>"; };
 		40DAF11D123536240003B6F9 /* MockApplication-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "MockApplication-Info.plist"; sourceTree = "<group>"; };
+		40DAF180123538C90003B6F9 /* MockApplication.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MockApplication.xib; sourceTree = "<group>"; };
+		40DAF18312353FD40003B6F9 /* StringOption.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StringOption.xib; sourceTree = "<group>"; };
+		40DAF1871235430F0003B6F9 /* PathOption.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PathOption.xib; sourceTree = "<group>"; };
+		40DAF196123543BE0003B6F9 /* NumberOption.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NumberOption.xib; sourceTree = "<group>"; };
+		40DAF198123544000003B6F9 /* EnumOption.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EnumOption.xib; sourceTree = "<group>"; };
+		40DAF19A123544880003B6F9 /* BooleanOption.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BooleanOption.xib; sourceTree = "<group>"; };
+		40DAF1A012355E210003B6F9 /* TKComponentBooleanOption.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TKComponentBooleanOption.h; sourceTree = "<group>"; };
+		40DAF1A112355E210003B6F9 /* TKComponentBooleanOption.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TKComponentBooleanOption.m; sourceTree = "<group>"; };
+		40DAF1AA123563C30003B6F9 /* TKComponentEnumOption.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TKComponentEnumOption.h; sourceTree = "<group>"; };
+		40DAF1AB123563C30003B6F9 /* TKComponentEnumOption.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TKComponentEnumOption.m; sourceTree = "<group>"; };
+		40DAF1AD123564810003B6F9 /* TKComponentOption.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TKComponentOption.h; sourceTree = "<group>"; };
+		40DAF1AE123564810003B6F9 /* TKComponentOption.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TKComponentOption.m; sourceTree = "<group>"; };
+		40DAF1C012359CE40003B6F9 /* TKComponentStringOption.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TKComponentStringOption.h; sourceTree = "<group>"; };
+		40DAF1C112359CE40003B6F9 /* TKComponentStringOption.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TKComponentStringOption.m; sourceTree = "<group>"; };
+		40DAF1E0123640290003B6F9 /* TKComponentNumberOption.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TKComponentNumberOption.h; sourceTree = "<group>"; };
+		40DAF1E1123640290003B6F9 /* TKComponentNumberOption.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TKComponentNumberOption.m; sourceTree = "<group>"; };
+		40DAF1E5123649A20003B6F9 /* TKComponentPathOption.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TKComponentPathOption.h; sourceTree = "<group>"; };
+		40DAF1E6123649A20003B6F9 /* TKComponentPathOption.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TKComponentPathOption.m; sourceTree = "<group>"; };
+		40DAF26912365C600003B6F9 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		40DAF27C123666150003B6F9 /* TKComponentConfigurationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TKComponentConfigurationView.h; sourceTree = "<group>"; };
+		40DAF27D123666150003B6F9 /* TKComponentConfigurationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TKComponentConfigurationView.m; sourceTree = "<group>"; };
+		40DAF29F12366F630003B6F9 /* Mock_AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Mock_AppDelegate.h; sourceTree = "<group>"; };
+		40DAF2A012366F630003B6F9 /* Mock_AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Mock_AppDelegate.m; sourceTree = "<group>"; };
 		40E6820E12342157004E2CB0 /* ComRrfComponentVasMainNib.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ComRrfComponentVasMainNib.xib; sourceTree = "<group>"; };
 		8D5B49B6048680CD000E48DA /* ComRrfComponentVas.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ComRrfComponentVas.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
 		8D5B49B7048680CD000E48DA /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -80,12 +130,12 @@
 		089C166AFE841209C02AAC07 /* ComRrfComponentVas */ = {
 			isa = PBXGroup;
 			children = (
+				40DAF17F123538910003B6F9 /* Testing */,
 				08FB77AFFE84173DC02AAC07 /* Classes */,
 				32C88E010371C26100C91783 /* Other Sources */,
 				089C167CFE841241C02AAC07 /* Resources */,
 				089C1671FE841209C02AAC07 /* Frameworks and Libraries */,
 				19C28FB8FE9D52D311CA2CBB /* Products */,
-				40DAF11D123536240003B6F9 /* MockApplication-Info.plist */,
 			);
 			name = ComRrfComponentVas;
 			sourceTree = "<group>";
@@ -155,6 +205,37 @@
 			name = "Other Sources";
 			sourceTree = "<group>";
 		};
+		40DAF17F123538910003B6F9 /* Testing */ = {
+			isa = PBXGroup;
+			children = (
+				40DAF29F12366F630003B6F9 /* Mock_AppDelegate.h */,
+				40DAF2A012366F630003B6F9 /* Mock_AppDelegate.m */,
+				40DAF180123538C90003B6F9 /* MockApplication.xib */,
+				40DAF19A123544880003B6F9 /* BooleanOption.xib */,
+				40DAF198123544000003B6F9 /* EnumOption.xib */,
+				40DAF196123543BE0003B6F9 /* NumberOption.xib */,
+				40DAF1871235430F0003B6F9 /* PathOption.xib */,
+				40DAF18312353FD40003B6F9 /* StringOption.xib */,
+				40DAF27C123666150003B6F9 /* TKComponentConfigurationView.h */,
+				40DAF27D123666150003B6F9 /* TKComponentConfigurationView.m */,
+				40DAF1AD123564810003B6F9 /* TKComponentOption.h */,
+				40DAF1AE123564810003B6F9 /* TKComponentOption.m */,
+				40DAF1C012359CE40003B6F9 /* TKComponentStringOption.h */,
+				40DAF1C112359CE40003B6F9 /* TKComponentStringOption.m */,
+				40DAF1E0123640290003B6F9 /* TKComponentNumberOption.h */,
+				40DAF1E1123640290003B6F9 /* TKComponentNumberOption.m */,
+				40DAF1A012355E210003B6F9 /* TKComponentBooleanOption.h */,
+				40DAF1A112355E210003B6F9 /* TKComponentBooleanOption.m */,
+				40DAF1E5123649A20003B6F9 /* TKComponentPathOption.h */,
+				40DAF1E6123649A20003B6F9 /* TKComponentPathOption.m */,
+				40DAF1AA123563C30003B6F9 /* TKComponentEnumOption.h */,
+				40DAF1AB123563C30003B6F9 /* TKComponentEnumOption.m */,
+				40DAF26912365C600003B6F9 /* main.m */,
+				40DAF11D123536240003B6F9 /* MockApplication-Info.plist */,
+			);
+			name = Testing;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -165,6 +246,7 @@
 				40DAF117123536240003B6F9 /* Resources */,
 				40DAF118123536240003B6F9 /* Sources */,
 				40DAF119123536240003B6F9 /* Frameworks */,
+				40DAF32F12367C830003B6F9 /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -218,6 +300,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				40DAF181123538C90003B6F9 /* MockApplication.xib in Resources */,
+				40DAF18412353FD40003B6F9 /* StringOption.xib in Resources */,
+				40DAF1881235430F0003B6F9 /* PathOption.xib in Resources */,
+				40DAF197123543BE0003B6F9 /* NumberOption.xib in Resources */,
+				40DAF199123544000003B6F9 /* EnumOption.xib in Resources */,
+				40DAF19B123544880003B6F9 /* BooleanOption.xib in Resources */,
+				40DAF30712367A770003B6F9 /* ComRrfComponentVas.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -238,6 +327,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				40DAF1A212355E210003B6F9 /* TKComponentBooleanOption.m in Sources */,
+				40DAF1AC123563C30003B6F9 /* TKComponentEnumOption.m in Sources */,
+				40DAF1AF123564810003B6F9 /* TKComponentOption.m in Sources */,
+				40DAF1C212359CE40003B6F9 /* TKComponentStringOption.m in Sources */,
+				40DAF1E2123640290003B6F9 /* TKComponentNumberOption.m in Sources */,
+				40DAF1E7123649A20003B6F9 /* TKComponentPathOption.m in Sources */,
+				40DAF26A12365C600003B6F9 /* main.m in Sources */,
+				40DAF27E123666150003B6F9 /* TKComponentConfigurationView.m in Sources */,
+				40DAF2A112366F630003B6F9 /* Mock_AppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

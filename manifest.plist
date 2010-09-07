@@ -35,6 +35,8 @@
 			<integer>3</integer>
 			<key>default</key>
 			<string></string>
+			<key>isDirectory</key>
+			<true/>
 			<key>allowsEdit</key>
 			<true/>
 			<key>allowsNull</key>
@@ -67,6 +69,8 @@
 			<integer>3</integer>
 			<key>default</key>
 			<string></string>
+			<key>isDirectory</key>
+			<false/>
 			<key>allowsEdit</key>
 			<true/>
 			<key>allowsNull</key>

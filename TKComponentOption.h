@@ -1,0 +1,71 @@
+////////////////////////////////////////////////////////////
+//  TKComponentParameter.h
+//  ComRrfComponentVas
+//  --------------------------------------------------------
+//  Author: Travis Nesland <tnesland@gmail.com>
+//  Created: 9/6/10
+//  Copyright 2010 smoooosh software. All rights reserved.
+/////////////////////////////////////////////////////////////
+#import <Cocoa/Cocoa.h>
+
+#define OPTION_STRING_NIB_NAME  @"StringOption"
+#define OPTION_NUMBER_NIB_NAME  @"NumberOption"
+#define OPTION_BOOLEAN_NIB_NAME @"BooleanOption"
+#define OPTION_PATH_NIB_NAME    @"PathOption"
+#define OPTION_ENUM_NIB_NAME    @"EnumOption"
+
+@interface TKComponentOption : NSObject {
+
+    NSString                                *optionLabel;
+    NSString                                *optionKeyName;
+    NSString                                *errorMessage;
+    NSString                                *help;
+    BOOL                                    allowsEdit;
+    BOOL                                    allowsNull;
+    id                                      value;
+    id                                      defaultValue;
+    /** Outlets */
+    IBOutlet NSView                         *view;
+    IBOutlet NSControl                      *control;
+}
+
+@property (nonatomic, retain)   NSString    *optionLabel;
+@property (nonatomic, retain)   NSString    *optionKeyName;
+@property (nonatomic, retain)   NSString    *errorMessage;
+@property (nonatomic, retain)   NSString    *help;
+@property (readwrite)           BOOL        allowsEdit;
+@property (readwrite)           BOOL        allowsNull;
+@property (nonatomic, retain)   id          value;
+@property (nonatomic, retain)   id          defaultValue;
+/** Outlets */
+@property (assign)  IBOutlet    NSView      *view;
+@property (assign)  IBOutlet    NSControl   *control;
+
+/** initWithDictionary: - sets values for given opiton using dictionary */
+- (id)initWithDictionary: (NSDictionary *)values;
+
+/** isValid - returns the validity of the user input value */
+- (BOOL)isValid;
+
+/** validate: - validation of the value as an action when user did finish editing */
+- (IBAction)validate: (id)sender;
+
+@end
+
+extern NSString * const TKComponentOptionsKey;
+extern NSString * const TKComponentOptionIdentifierKey;
+extern NSString * const TKComponentOptionDisplayNameKey;
+extern NSString * const TKComponentOptionTypeKey;
+extern NSString * const TKComponentOptionDefaultKey;
+extern NSString * const TKComponentOptionAllowsEditKey;
+extern NSString * const TKComponentOptionAllowsNullKey;
+extern NSString * const TKComponentOptionHelpKey;
+
+
+enum TKComponentOptionType {
+    TKComponentOptionTypeString     = 0,
+    TKComponentOptionTypeNumber     = 1,
+    TKComponentOptionTypeBoolean    = 2,
+    TKComponentOptionTypePath       = 3,
+    TKComponentOptionTypeEnum       = 4
+}; typedef NSInteger TKComponentOptionType;

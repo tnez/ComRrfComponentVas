@@ -107,10 +107,12 @@
 			<integer>1</integer>
 			<key>default</key>
 			<integer>0</integer>
+			<key>min</key>
+			<integer>0</integer>
 			<key>allowsEdit</key>
 			<true/>
 			<key>allowsNull</key>
-			<false/>
+			<true/>
 			<key>help</key>
 			<string>Number of intended questions - use 0 if you wish to ask every question in set</string>
 		</dict>
@@ -123,10 +125,14 @@
 			<integer>1</integer>
 			<key>default</key>
 			<integer>2</integer>
+			<key>min</key>
+			<integer>0</integer>
+			<key>max</key>
+			<integer>20</integer>
 			<key>allowsEdit</key>
 			<true/>
 			<key>allowsNull</key>
-			<false/>
+			<true/>
 			<key>help</key>
 			<string>Number of tick marks you wish displayed on the visual analog scale</string>
 		</dict>

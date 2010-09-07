@@ -38,7 +38,7 @@
 			isa = PBXContainerItemProxy;
 			containerPortal = 089C1669FE841209C02AAC07 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 8D5B49AC048680CD000E48DA /* ComRrfComponentVas */;
+			remoteGlobalIDString = 8D5B49AC048680CD000E48DA;
 			remoteInfo = ComRrfComponentVas;
 		};
 /* End PBXContainerItemProxy section */
@@ -76,7 +76,7 @@
 		404A77671222D00400B4CD5B /* ComRrfComponentVasController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ComRrfComponentVasController.h; sourceTree = "<group>"; };
 		404A77681222D00400B4CD5B /* ComRrfComponentVasController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ComRrfComponentVasController.m; sourceTree = "<group>"; };
 		404A776A1222D15300B4CD5B /* TKUtility.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = TKUtility.framework; path = ../../TKUtility/build/Release/TKUtility.framework; sourceTree = SOURCE_ROOT; };
-		40DAF11B123536240003B6F9 /* MockApplication.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = MockApplication.app; path = build/Debug/MockApplication.app; sourceTree = "<group>"; };
+		40DAF11B123536240003B6F9 /* MockApplication.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MockApplication.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		40DAF11D123536240003B6F9 /* MockApplication-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "MockApplication-Info.plist"; sourceTree = "<group>"; };
 		40DAF180123538C90003B6F9 /* MockApplication.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MockApplication.xib; sourceTree = "<group>"; };
 		40DAF18312353FD40003B6F9 /* StringOption.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StringOption.xib; sourceTree = "<group>"; };

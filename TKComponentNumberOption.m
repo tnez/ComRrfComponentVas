@@ -28,7 +28,11 @@
 }
 
 - (BOOL)isValid {
-    return (!min || [value isGreaterThanOrEqualTo:min]) && (!max || [value isLessThanOrEqualTo:max]);
+    if(!allowsNull && ![value stringValue] > 0) {
+        return NO;
+    }
+    return (!min || [value floatValue] >= [min floatValue]) &&
+           (!max || [value floatValue] <= [max floatValue]);
 }
 
 - (IBAction)validate: (id)sender {

@@ -31,7 +31,7 @@
 }
 
 - (BOOL)isValid {
-    return value || allowsNull;
+    return [value length] > 0 || allowsNull;
 }
 
 - (IBAction)validate: (id)sender {

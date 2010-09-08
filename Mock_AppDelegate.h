@@ -7,6 +7,7 @@
 //  Copyright 2010 smoooosh software. All rights reserved.
 /////////////////////////////////////////////////////////////
 #import <Cocoa/Cocoa.h>
+@class TKComponentConfigurationView;
 @interface Mock_AppDelegate : NSObject {
 
     /** setup material */
@@ -14,10 +15,10 @@
     NSArray                                     *componentOptions;
     
     /** view boxes */
-    IBOutlet NSView                             *leftView;
+    IBOutlet NSScrollView                       *leftView;
     IBOutlet NSView                             *topRightView;
     IBOutlet NSView                             *bottomRightView;
-    NSView                                      *componentConfigView;
+    TKComponentConfigurationView                *componentConfigView;
     
     /** run products */
     NSDictionary                                *componentDefinition;
@@ -27,7 +28,7 @@
 
 @property (nonatomic, retain) NSDictionary      *manifest;
 @property (nonatomic, retain) NSArray           *componentOptions;
-@property (assign) IBOutlet NSView              *leftView;
+@property (assign) IBOutlet NSScrollView        *leftView;
 @property (assign) IBOutlet NSView              *topRightView;
 @property (assign) IBOutlet NSView              *bottomRightView;
 @property (nonatomic, retain) NSDictionary      *componentDefinition;

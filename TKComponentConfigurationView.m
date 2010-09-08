@@ -10,30 +10,82 @@
 
 
 @implementation TKComponentConfigurationView
+@synthesize marginLeft,marginRight,marginTop,marginBottom;
+- (void)awakeFromNib {
+    width = marginLeft + marginRight;
+    height = marginTop + marginBottom;
+    [self setAutoresizesSubviews:NO];
+}
 
 - (id)initWithFrame:(NSRect)frame {
     self = [super initWithFrame:frame];
     if (self) {
-        nextSubviewOrigin = NSMakePoint(0,0);
-        [self setAutoresizingMask:NSViewNotSizable];
+        width = marginLeft + marginRight;
+        height = marginTop + marginBottom;
+        [self setAutoresizesSubviews:NO];
     }
     return self;
 }
 
 - (void)drawRect:(NSRect)rect {
-
+    [self setFrame:NSMakeRect(0.0,0.0,width,height)];
 }
 
 - (void)addSubview: (NSView *)theSubview {
-    [theSubview setFrameOrigin:nextSubviewOrigin];
+    // set the frame origin for new subview
+    [theSubview setFrameOrigin:
+     NSMakePoint(marginLeft,height-marginBottom)];
+    // if the subview's width is greater than our current width...
+    if([theSubview bounds].size.width > [self bounds].size.width - (marginLeft+marginRight)) {
+        // ...expand
+        width = [theSubview bounds].size.width + marginLeft + marginRight;
+    }
+    // expand the view's height to include new subview
+    height = height + [theSubview bounds].size.height;
+    // add the subview
     [super addSubview:theSubview];
+    // mark both views for drawing
     [theSubview setNeedsDisplay:YES];
     [self setNeedsDisplay:YES];
-    nextSubviewOrigin = NSMakePoint(0,nextSubviewOrigin.y + [theSubview bounds].size.height);    
 }
     
 - (BOOL)isFlipped {
     return YES; // do this so origin is top left
+}
+
+- (void)setMargins: (float)newValue {
+    // save old values needed for bounds recalc
+    float oldLeft, oldTop;
+    oldLeft         = marginLeft;
+    oldTop          = marginTop;
+    // set new values
+    marginLeft      = newValue;
+    marginRight     = newValue;
+    marginTop       = newValue;
+    marginBottom    = newValue;
+    height          = marginTop + marginBottom;
+    width           = marginLeft + marginRight;
+    // for each subview...
+    for(NSView *v in [self subviews]) {
+        // update frame origin
+        NSPoint old = [v frame].origin;
+        [v setFrameOrigin:NSMakePoint(old.x+marginLeft-oldLeft,
+                                      old.y+marginTop-oldTop)];
+        // if subview spans beyone width...
+        if([v bounds].size.width+marginLeft+marginRight > width) {
+            //...update width
+            width = [v bounds].size.width+marginLeft+marginRight;
+        }
+        // if subview spans beyond height...
+        if([v frame].origin.y+[v bounds].size.height+marginBottom > height) {
+            //...update height
+            height = [v frame].origin.y+[v bounds].size.height+marginBottom;
+        }
+        // flag subview for redraw
+        [v setNeedsDisplay:YES];
+    }
+    // flag ourself for redraw
+    [self setNeedsDisplay:YES];
 }
 
 @end

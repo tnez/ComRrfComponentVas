@@ -97,6 +97,8 @@
 			<true/>
 			<key>allowsNull</key>
 			<false/>
+			<key>help</key>
+			<string>Order in which to present the questions</string>
 		</dict>
 		<dict>
 			<key>optionIdentifier</key>

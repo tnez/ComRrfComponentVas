@@ -43,7 +43,7 @@ componentDefinition,sessionWindow,presentedOptions;
     // load component config view
     componentConfigView =
         [[TKComponentConfigurationView alloc] initWithFrame:[leftView frame]];
-    [leftView addSubview:componentConfigView];
+    [componentConfigView setMargins:10.0];
     // for each option add a subview
     id tmp = nil;
     for(NSDictionary *option in componentOptions) {
@@ -87,6 +87,8 @@ componentDefinition,sessionWindow,presentedOptions;
                 break;
         }   // end switch
     }       // end for
+    // add component view to left view
+    [leftView setDocumentView:componentConfigView];
     // display views
     [componentConfigView setNeedsDisplay:YES];
     [leftView setNeedsDisplay:YES];

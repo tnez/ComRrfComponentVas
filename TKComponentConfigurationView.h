@@ -9,8 +9,28 @@
 #import <Cocoa/Cocoa.h>
 
 
-@interface TKComponentConfigurationView : NSScrollView {
-    NSPoint     nextSubviewOrigin;
+@interface TKComponentConfigurationView : NSView {
+    float width;                // width of entire view
+    float height;               // height of entire view
+    float marginLeft;
+    float marginRight;
+    float marginTop;
+    float marginBottom;
+    NSPoint nextOrigin;         // point of insertion for next subview
 }
+
+@property (readwrite) float marginLeft;
+@property (readwrite) float marginRight;
+@property (readwrite) float marginTop;
+@property (readwrite) float marginBottom;
+
+/** Override to provide automatic layout of subviews - Add each view starting at the top and working down, expanding the view as we go */
+- (void)addSubview: (NSView *)theSubview;
+
+/** Override to flip the coordinate system - top-down */
+- (BOOL)isFlipped;
+
+/** Set all margins equally using number */
+- (void)setMargins: (float)newValue;
 
 @end

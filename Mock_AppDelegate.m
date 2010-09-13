@@ -39,13 +39,15 @@ componentDefinition,setupWindow,sessionWindow,presentedOptions,errorLog;
     [self setPresentedOptions:[NSMutableArray array]];
     [self setComponentOptions:[NSArray arrayWithArray:
                                [manifest valueForKey:TKComponentOptionsKey]]];
+    [self setComponentDefinition:[[NSMutableDictionary alloc] init]];
+    
     // load component config view
     componentConfigView =
         [[TKComponentConfigurationView alloc] initWithFrame:[leftView frame]];
     [componentConfigView setMargins:10.0];
     // for each option add a subview
     id tmp = nil;
-    for(NSDictionary *option in componentOptions) {
+    for(id option in componentOptions) {
         switch([[option valueForKey:TKComponentOptionTypeKey] integerValue]) {
             case TKComponentOptionTypeString:
                 tmp = [[TKComponentStringOption alloc]
@@ -93,13 +95,29 @@ componentDefinition,setupWindow,sessionWindow,presentedOptions,errorLog;
     [leftView setNeedsDisplay:YES];
 }
 
-- (IBAction) preflight: (id)sender {
-    // create definition
+- (void)createDefinition {
+    
+    // populate universal manifest info
+    [componentDefinition setValue:[manifest valueForKey:TKComponentTypeKey] forKey:TKComponentTypeKey];
+    [componentDefinition setValue:[manifest valueForKey:TKComponentNameKey] forKey:TKComponentNameKey];
+    [componentDefinition setValue:[manifest valueForKey:TKComponentBundleIdentifierKey] forKey:TKComponentBundleIdentifierKey];
+
+    // populate options
     for(TKComponentOption *option in presentedOptions) {
         [componentDefinition setValue:[option value]
                                forKey:[option optionKeyName]];
     }
     
+    // DEBUG: write definition for debugging
+    [componentDefinition writeToFile:@"/Users/tnesland/Desktop/definition.plist" atomically:NO];
+    
+}
+    
+- (IBAction)preflight: (id)sender {
+
+    // create definition from options
+    [self createDefinition];
+     
     // create component
     component = [[TKComponentController loadFromDefinition:componentDefinition] retain];
     
@@ -117,10 +135,32 @@ componentDefinition,setupWindow,sessionWindow,presentedOptions,errorLog;
 - (IBAction) run: (id)sender {
     
     // create definition
-    for(TKComponentOption *option in presentedOptions) {
-        [componentDefinition setValue:[option value]
-                               forKey:[option optionKeyName]];
+    [self createDefinition];
+    
+    // create component
+    component = [[TKComponentController loadFromDefinition:componentDefinition] retain];
+    
+    // load session window
+    [NSBundle loadNibNamed:@"SessionWindow" owner:self];
+    
+    // setup component
+    [component setSubject:subject];
+    [component setSessionWindow:setupWindow];
+    
+    // if component is good to go...
+    if([component isClearedToBegin]) {
+        // ...go
+        [component begin];
+    } else { // if component is not good...
+        // ...
     }
+}
+
+- (IBAction) runWithSample: (id)sender {
+
+    // create component definition
+    [self setComponentDefinition:[NSDictionary dictionaryWithContentsOfFile:
+                                  [[NSBundle mainBundle] pathForResource:@"SampleDefinition" ofType:@"plist"]]];
     
     // create component
     component = [[TKComponentController loadFromDefinition:componentDefinition] retain];

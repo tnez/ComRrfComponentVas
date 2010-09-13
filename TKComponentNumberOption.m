@@ -10,11 +10,12 @@
 #import "TKComponentNumberOption.h"
 
 @implementation TKComponentNumberOption
-@synthesize min,max;
+@synthesize min,max,value;
 
 - (void)dealloc {
     [min release];
     [max release];
+    [value release];
     [super dealloc];
 }
 
@@ -22,6 +23,7 @@
     if(self=[super initWithDictionary:values]) {
         [self setMin:[values valueForKey:TKComponentOptionMinKey]];
         [self setMax:[values valueForKey:TKComponentOptionMaxKey]];
+        [self setValue:(NSNumber *)[values valueForKey:TKComponentOptionDefaultKey]];
         [NSBundle loadNibNamed:TKComponentNumberOptionNibNameKey owner:self];
         return self;
     }
@@ -47,13 +49,8 @@
     }
 }
 
-- (NSNumber *)value {
-    return (NSNumber *)value;
-}
-
 @end
 
 NSString * const TKComponentOptionMinKey = @"min";
 NSString * const TKComponentOptionMaxKey = @"max";
-
 NSString * const TKComponentNumberOptionNibNameKey = @"NumberOption";

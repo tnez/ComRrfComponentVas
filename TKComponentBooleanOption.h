@@ -12,12 +12,11 @@
 #import "TKComponentOption.h"
 
 @interface TKComponentBooleanOption : TKComponentOption {
-
+    NSNumber *value;
 }
+@property (nonatomic, retain) NSNumber *value;
 
 - (id)initWithDictionary: (NSDictionary *)values;
-
-- (NSNumber *)value;
 
 @end
 

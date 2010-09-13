@@ -17,7 +17,6 @@
     NSString                                *help;
     BOOL                                    allowsEdit;
     BOOL                                    allowsNull;
-    id                                      value;
     id                                      defaultValue;
     /** Outlets */
     IBOutlet NSView                         *view;
@@ -30,7 +29,6 @@
 @property (nonatomic, retain)   NSString    *help;
 @property (readwrite)           BOOL        allowsEdit;
 @property (readwrite)           BOOL        allowsNull;
-@property (nonatomic, retain)   id          value;
 @property (nonatomic, retain)   id          defaultValue;
 /** Outlets */
 @property (assign)  IBOutlet    NSView      *view;

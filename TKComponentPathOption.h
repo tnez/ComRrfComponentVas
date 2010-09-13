@@ -11,11 +11,12 @@
 #import "TKComponentOption.h"
 
 @interface TKComponentPathOption : TKComponentOption {
-
     BOOL                    selectionIsDirectoryType;
+    NSString                *value;
 }
 
 @property (readwrite) BOOL  selectionIsDirectoryType;
+@property (nonatomic, retain) NSString *value;
 
 - (IBAction)browseForPath: (id)sender;
 
@@ -24,8 +25,6 @@
 - (BOOL)isValid;
 
 - (IBAction)validate: (id)sender;
-
-- (NSString *)value;
 
 @end
 

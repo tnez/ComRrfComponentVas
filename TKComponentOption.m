@@ -11,14 +11,13 @@
 
 @implementation TKComponentOption
 
-@synthesize optionLabel,optionKeyName,errorMessage,help,allowsEdit,allowsNull,value,defaultValue,view,control;
+@synthesize optionLabel,optionKeyName,errorMessage,help,allowsEdit,allowsNull,defaultValue,view,control;
 
 - (void)dealloc {
     [optionLabel release];
     [optionKeyName release];
     [errorMessage release];
     [help release];
-    [value release];
     [defaultValue release];
     [super dealloc];
 }
@@ -31,7 +30,6 @@
         [self setHelp:[values valueForKey:TKComponentOptionHelpKey]];
         [self setAllowsEdit:[[values valueForKey:TKComponentOptionAllowsEditKey] boolValue]];
         [self setAllowsNull:[[values valueForKey:TKComponentOptionAllowsNullKey] boolValue]];
-        [self setValue:[values valueForKey:TKComponentOptionDefaultKey]];
         [self setDefaultValue:[values valueForKey:TKComponentOptionDefaultKey]];
         return self;
     }

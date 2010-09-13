@@ -13,13 +13,13 @@
 @interface TKComponentEnumOption : TKComponentOption {
 
     NSArray                             *enumeratedList;
+    NSNumber                            *value;
 }
 
 @property (nonatomic, retain) NSArray   *enumeratedList;
+@property (nonatomic, retain) NSNumber  *value;
 
 - (id)initWithDictionary: (NSDictionary *)values;
-
-- (NSNumber *)value;
 
 @end
 

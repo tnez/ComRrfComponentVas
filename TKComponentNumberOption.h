@@ -14,18 +14,18 @@
 
     NSNumber                                *min;
     NSNumber                                *max;
+    NSNumber                                *value;
 }
 
 @property (nonatomic, retain) NSNumber      *min;
 @property (nonatomic, retain) NSNumber      *max;
+@property (nonatomic, retain) NSNumber      *value;
 
 - (id)initWithDictionary: (NSDictionary *)values;
 
 - (BOOL)isValid;
 
 - (IBAction)validate: (id)sender;
-
-- (NSNumber *)value;
 
 @end
 

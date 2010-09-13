@@ -10,24 +10,22 @@
 #import "TKComponentEnumOption.h"
 
 @implementation TKComponentEnumOption
-@synthesize enumeratedList;
+@synthesize enumeratedList,value;
 
 - (void) dealloc {
     [enumeratedList release];
+    [value release];
     [super dealloc];
 }
 
 - (id)initWithDictionary: (NSDictionary *)values {
     if(self=[super initWithDictionary:values]) {
         [self setEnumeratedList:[values valueForKey:TKComponentOptionEnumeratedListKey]];
+        [self setValue:(NSNumber *)[values valueForKey:TKComponentOptionDefaultKey]];
         [NSBundle loadNibNamed:TKComponentEnumOptionNibNameKey owner:self];
         return self;
     }
     return nil;
-}
-
-- (NSNumber *)value {
-    return (NSNumber *)value;
 }
 
 @end

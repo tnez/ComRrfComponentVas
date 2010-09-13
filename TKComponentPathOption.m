@@ -10,7 +10,12 @@
 #import "TKComponentPathOption.h"
 
 @implementation TKComponentPathOption
-@synthesize selectionIsDirectoryType;
+@synthesize selectionIsDirectoryType,value;
+
+- (void) dealloc {
+    [value release];
+    [super dealloc];
+}
 
 - (IBAction)browseForPath: (id)sender {
     NSOpenPanel *p = [NSOpenPanel openPanel];
@@ -25,6 +30,7 @@
 - (id)initWithDictionary: (NSDictionary *)values {
     if(self=[super initWithDictionary:values]) {
         [self setSelectionIsDirectoryType:[[values valueForKey:TKComponentOptionIsDirKey] boolValue]];
+        [self setValue:[values valueForKey:TKComponentOptionDefaultKey]];
         [NSBundle loadNibNamed:TKComponentPathOptionNibNameKey owner:self];
         return self;
     }
@@ -41,10 +47,6 @@
     if(![self isValid]) {
         [self setErrorMessage:@"Path must not be nil"];
     }
-}
-
-- (NSString *)value {
-    return (NSString *)value;
 }
 
 @end

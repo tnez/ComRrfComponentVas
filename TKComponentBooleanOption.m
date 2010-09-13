@@ -10,17 +10,20 @@
 #import "TKComponentBooleanOption.h"
 
 @implementation TKComponentBooleanOption
+@synthesize value;
+
+- (void)dealloc {
+    [value release];
+    [super dealloc];
+}
 
 - (id)initWithDictionary: (NSDictionary *)values {
     if(self=[super initWithDictionary:values]) {
+        [self setValue:(NSNumber *)[values valueForKey:TKComponentOptionDefaultKey]];
         [NSBundle loadNibNamed:TKComponentBooleanOptionNibNameKey owner:self];
         return self;
     }
     return nil;
-}
-
-- (NSNumber *)value {
-    return (NSNumber *)value;
 }
 
 @end

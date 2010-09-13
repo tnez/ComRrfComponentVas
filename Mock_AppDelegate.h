@@ -29,26 +29,31 @@
 
     
     /** run products */
-    NSDictionary                                *componentDefinition;
+    NSMutableDictionary                         *componentDefinition;
     NSMutableArray                              *presentedOptions;
     NSString                                    *errorLog;
     
 }
 
-@property (nonatomic, retain) NSDictionary      *manifest;
-@property (nonatomic, retain) NSArray           *componentOptions;
-@property (assign) IBOutlet TKSubject           *subject;
-@property (assign) IBOutlet NSScrollView        *leftView;
-@property (assign) IBOutlet NSView              *topRightView;
-@property (assign) IBOutlet NSView              *bottomRightView;
-@property (assign) IBOutlet NSWindow            *setupWindow;
-@property (assign) IBOutlet NSWindow            *sessionWindow;
-@property (nonatomic, retain) NSDictionary      *componentDefinition;
-@property (nonatomic, retain) NSMutableArray    *presentedOptions;
-@property (nonatomic, retain) NSString          *errorLog;
+@property (nonatomic, retain) NSDictionary          *manifest;
+@property (nonatomic, retain) NSArray               *componentOptions;
+@property (assign) IBOutlet TKSubject               *subject;
+@property (assign) IBOutlet NSScrollView            *leftView;
+@property (assign) IBOutlet NSView                  *topRightView;
+@property (assign) IBOutlet NSView                  *bottomRightView;
+@property (assign) IBOutlet NSWindow                *setupWindow;
+@property (assign) IBOutlet NSWindow                *sessionWindow;
+@property (nonatomic, retain) NSMutableDictionary   *componentDefinition;
+@property (nonatomic, retain) NSMutableArray        *presentedOptions;
+@property (nonatomic, retain) NSString              *errorLog;
 
 /** ACTIONS */
 - (IBAction)run: (id)sender;
+- (IBAction)runWithSample: (id)sender;
 - (IBAction)preflight: (id)sender;
+- (IBAction)preflightWithSample: (id)sender;
+
+/** INTERNAL METHODS */
+- (void)createDefinition;
 
 @end

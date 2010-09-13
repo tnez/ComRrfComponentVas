@@ -11,12 +11,15 @@
 #import "TKComponentOption.h"
 
 @interface TKComponentStringOption : TKComponentOption {
-
+    NSString *value;
 }
+@property (nonatomic, retain) NSString *value;
 
 - (id)initWithDictionary: (NSDictionary *)values;
 
 - (BOOL)isValid;
+
+- (void)setValue: (NSString *)newValue;
 
 - (IBAction)validate: (id)sender;
 

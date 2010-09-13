@@ -11,6 +11,7 @@
 		404A77691222D00400B4CD5B /* ComRrfComponentVasController.m in Sources */ = {isa = PBXBuildFile; fileRef = 404A77681222D00400B4CD5B /* ComRrfComponentVasController.m */; };
 		404A776B1222D15300B4CD5B /* TKUtility.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 404A776A1222D15300B4CD5B /* TKUtility.framework */; };
 		405620C41239687C0088B8BA /* SessionWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 405620C31239687C0088B8BA /* SessionWindow.xib */; };
+		4070BA6B123E5A1900CDF821 /* SampleDefinition.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4070BA6A123E5A1900CDF821 /* SampleDefinition.plist */; };
 		408FA96B12394C440024DD3B /* BooleanOption.xib in Resources */ = {isa = PBXBuildFile; fileRef = 408FA96612394C440024DD3B /* BooleanOption.xib */; };
 		408FA96C12394C440024DD3B /* EnumOption.xib in Resources */ = {isa = PBXBuildFile; fileRef = 408FA96712394C440024DD3B /* EnumOption.xib */; };
 		408FA96D12394C440024DD3B /* NumberOption.xib in Resources */ = {isa = PBXBuildFile; fileRef = 408FA96812394C440024DD3B /* NumberOption.xib */; };
@@ -79,6 +80,7 @@
 		404A77681222D00400B4CD5B /* ComRrfComponentVasController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ComRrfComponentVasController.m; sourceTree = "<group>"; };
 		404A776A1222D15300B4CD5B /* TKUtility.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = TKUtility.framework; path = ../../TKUtility/build/Release/TKUtility.framework; sourceTree = SOURCE_ROOT; };
 		405620C31239687C0088B8BA /* SessionWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SessionWindow.xib; sourceTree = "<group>"; };
+		4070BA6A123E5A1900CDF821 /* SampleDefinition.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = SampleDefinition.plist; sourceTree = "<group>"; };
 		408FA96612394C440024DD3B /* BooleanOption.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BooleanOption.xib; sourceTree = "<group>"; };
 		408FA96712394C440024DD3B /* EnumOption.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EnumOption.xib; sourceTree = "<group>"; };
 		408FA96812394C440024DD3B /* NumberOption.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NumberOption.xib; sourceTree = "<group>"; };
@@ -160,6 +162,7 @@
 				089C167DFE841241C02AAC07 /* InfoPlist.strings */,
 				404A77631222BD2D00B4CD5B /* manifest.plist */,
 				40E6820E12342157004E2CB0 /* ComRrfComponentVasMainNib.xib */,
+				4070BA6A123E5A1900CDF821 /* SampleDefinition.plist */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -321,6 +324,7 @@
 				408FA96E12394C440024DD3B /* PathOption.xib in Resources */,
 				408FA96F12394C440024DD3B /* StringOption.xib in Resources */,
 				405620C41239687C0088B8BA /* SessionWindow.xib in Resources */,
+				4070BA6B123E5A1900CDF821 /* SampleDefinition.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

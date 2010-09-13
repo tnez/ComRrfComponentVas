@@ -11,8 +11,14 @@
 
 @implementation TKComponentStringOption
 
+- (void)dealloc {
+    [value release];
+    [super dealloc];
+}
+
 - (id)initWithDictionary: (NSDictionary *)values {
     if(self=[super initWithDictionary:values]) {
+        [self setValue:[values valueForKey:TKComponentOptionDefaultKey]];
         [NSBundle loadNibNamed:TKComponentStringOptionNibNameKey owner:self];
         return self;
     }
@@ -21,6 +27,14 @@
 
 - (BOOL)isValid {
     return allowsNull || [value length] > 0;
+}
+
+- (void)setValue: (NSString *)newValue {
+    NSString *oldValue = [self value];
+    if(![oldValue isEqualToString:newValue]) {
+        value = [newValue retain];
+        [oldValue release];
+    }
 }
 
 - (IBAction)validate: (id)sender {

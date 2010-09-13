@@ -4,7 +4,8 @@
 //  --------------------------------------------------------
 //  Author: Travis Nesland <tnesland@gmail.com>
 //  Created: 9/6/10
-//  Copyright 2010 smoooosh software. All rights reserved.
+//  Copyright 2010 Resedential Research Facility,
+//  University of Kentucky. All rights reserved.
 /////////////////////////////////////////////////////////////
 #import "TKComponentEnumOption.h"
 
@@ -23,6 +24,10 @@
         return self;
     }
     return nil;
+}
+
+- (NSNumber *)value {
+    return (NSNumber *)value;
 }
 
 @end

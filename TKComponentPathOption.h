@@ -4,7 +4,8 @@
 //  --------------------------------------------------------
 //  Author: Travis Nesland <tnesland@gmail.com>
 //  Created: 9/7/10
-//  Copyright 2010 smoooosh software. All rights reserved.
+//  Copyright 2010 Resedential Research Facility,
+//  University of Kentucky. All rights reserved.
 /////////////////////////////////////////////////////////////
 #import <Cocoa/Cocoa.h>
 #import "TKComponentOption.h"
@@ -23,7 +24,9 @@
 - (BOOL)isValid;
 
 - (IBAction)validate: (id)sender;
-    
+
+- (NSString *)value;
+
 @end
 
 extern NSString * const TKComponentOptionIsDirKey;

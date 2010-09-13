@@ -4,15 +4,10 @@
 //  --------------------------------------------------------
 //  Author: Travis Nesland <tnesland@gmail.com>
 //  Created: 9/6/10
-//  Copyright 2010 smoooosh software. All rights reserved.
+//  Copyright 2010 Resedential Research Facility,
+//  University of Kentucky. All rights reserved.
 /////////////////////////////////////////////////////////////
 #import <Cocoa/Cocoa.h>
-
-#define OPTION_STRING_NIB_NAME  @"StringOption"
-#define OPTION_NUMBER_NIB_NAME  @"NumberOption"
-#define OPTION_BOOLEAN_NIB_NAME @"BooleanOption"
-#define OPTION_PATH_NIB_NAME    @"PathOption"
-#define OPTION_ENUM_NIB_NAME    @"EnumOption"
 
 @interface TKComponentOption : NSObject {
 

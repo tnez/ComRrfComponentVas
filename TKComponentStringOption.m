@@ -4,7 +4,8 @@
 //  --------------------------------------------------------
 //  Author: Travis Nesland <tnesland@gmail.com>
 //  Created: 9/6/10
-//  Copyright 2010 smoooosh software. All rights reserved.
+//  Copyright 2010 Resedential Research Facility,
+//  University of Kentucky. All rights reserved.
 /////////////////////////////////////////////////////////////
 #import "TKComponentStringOption.h"
 
@@ -27,6 +28,10 @@
     if(![self isValid]) {
         [self setErrorMessage:@"Value must not be nil"];
     }
+}
+
+- (NSString *)value {
+    return (NSString *)value;
 }
 
 @end

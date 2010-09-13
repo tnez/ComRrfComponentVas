@@ -4,10 +4,12 @@
 //  --------------------------------------------------------
 //  Author: Travis Nesland <tnesland@gmail.com>
 //  Created: 9/7/10
-//  Copyright 2010 smoooosh software. All rights reserved.
+//  Copyright 2010 Resedential Research Facility,
+//  University of Kentucky. All rights reserved.
 /////////////////////////////////////////////////////////////
 #import "Mock_AppDelegate.h"
 #import "TKComponentConfigurationView.h"
+#import "TKComponentOption.h"
 #import "TKComponentStringOption.h"
 #import "TKComponentNumberOption.h"
 #import "TKComponentBooleanOption.h"
@@ -15,27 +17,24 @@
 #import "TKComponentEnumOption.h"
 
 @implementation Mock_AppDelegate
-@synthesize manifest,componentOptions,leftView,topRightView,bottomRightView,
-componentDefinition,sessionWindow,presentedOptions;
+@synthesize manifest,componentOptions,subject,leftView,topRightView,bottomRightView,
+componentDefinition,setupWindow,sessionWindow,presentedOptions,errorLog;
 
 - (void)dealloc {
     [manifest release];
     [componentOptions release];
     [componentDefinition release];
-    [sessionWindow release];
     [presentedOptions release];
+    [errorLog release];
     [super dealloc];
 }
 
 - (void)awakeFromNib {
-    // find bundle
-    NSBundle *compBundle = [[NSBundle bundleWithPath:
-                             [[NSBundle mainBundle]
-                              pathForResource:@"ComRrfComponentVas" ofType:@"bundle"]] retain];
+    // reset error log
+    errorLog = nil;
     // read manifest
-    [self setManifest:
-     [NSDictionary dictionaryWithContentsOfFile:
-      [compBundle pathForResource:@"manifest" ofType:@"plist"]]];
+    [self setManifest:[NSDictionary dictionaryWithContentsOfFile:
+                       [[NSBundle mainBundle] pathForResource:@"manifest" ofType:@"plist"]]];
     // get options
     [self setPresentedOptions:[NSMutableArray array]];
     [self setComponentOptions:[NSArray arrayWithArray:
@@ -94,4 +93,53 @@ componentDefinition,sessionWindow,presentedOptions;
     [leftView setNeedsDisplay:YES];
 }
 
+- (IBAction) preflight: (id)sender {
+    // create definition
+    for(TKComponentOption *option in presentedOptions) {
+        [componentDefinition setValue:[option value]
+                               forKey:[option optionKeyName]];
+    }
+    
+    // create component
+    component = [[TKComponentController loadFromDefinition:componentDefinition] retain];
+    
+    // setup component
+    [component setSubject:subject];
+    [component setSessionWindow:setupWindow];
+    
+    // test
+    [self setErrorLog:[component preflightAndReturnErrorAsString]];
+    
+    // give back component
+    [component release];
+}
+    
+- (IBAction) run: (id)sender {
+    
+    // create definition
+    for(TKComponentOption *option in presentedOptions) {
+        [componentDefinition setValue:[option value]
+                               forKey:[option optionKeyName]];
+    }
+    
+    // create component
+    component = [[TKComponentController loadFromDefinition:componentDefinition] retain];
+    
+    // load session window
+    [NSBundle loadNibNamed:@"SessionWindow" owner:self];
+    
+    // setup component
+    [component setSubject:subject];
+    [component setSessionWindow:setupWindow];
+    
+    // if component is good to go...
+    if([component isClearedToBegin]) {
+        // ...go
+        [component begin];
+    } else { // if component is not good...
+        // ...
+    }
+}
+        
+    
 @end

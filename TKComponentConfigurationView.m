@@ -3,7 +3,8 @@
 //  ComRrfComponentVas
 //
 //  Created by Travis Nesland on 9/7/10.
-//  Copyright 2010 smoooosh software. All rights reserved.
+//  Copyright 2010 Resedential Research Facility,
+//  University of Kentucky. All rights reserved.
 //
 
 #import "TKComponentConfigurationView.h"
@@ -36,12 +37,12 @@
     [theSubview setFrameOrigin:
      NSMakePoint(marginLeft,height-marginBottom)];
     // if the subview's width is greater than our current width...
-    if([theSubview bounds].size.width > [self bounds].size.width - (marginLeft+marginRight)) {
+    if([theSubview frame].size.width > width-marginLeft-marginRight) {
         // ...expand
-        width = [theSubview bounds].size.width + marginLeft + marginRight;
+        width = [theSubview frame].size.width + marginLeft + marginRight;
     }
     // expand the view's height to include new subview
-    height = height + [theSubview bounds].size.height;
+    height = height + [theSubview frame].size.height;
     // add the subview
     [super addSubview:theSubview];
     // mark both views for drawing

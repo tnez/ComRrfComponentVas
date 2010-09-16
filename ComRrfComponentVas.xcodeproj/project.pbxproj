@@ -7,10 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		401C31301242572A005D725E /* ComRrfComponentVasMainNib.xib in Resources */ = {isa = PBXBuildFile; fileRef = 401C312F1242572A005D725E /* ComRrfComponentVasMainNib.xib */; };
 		404A77641222BD2D00B4CD5B /* manifest.plist in Resources */ = {isa = PBXBuildFile; fileRef = 404A77631222BD2D00B4CD5B /* manifest.plist */; };
 		404A77691222D00400B4CD5B /* ComRrfComponentVasController.m in Sources */ = {isa = PBXBuildFile; fileRef = 404A77681222D00400B4CD5B /* ComRrfComponentVasController.m */; };
 		404A776B1222D15300B4CD5B /* TKUtility.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 404A776A1222D15300B4CD5B /* TKUtility.framework */; };
 		405620C41239687C0088B8BA /* SessionWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 405620C31239687C0088B8BA /* SessionWindow.xib */; };
+		406A240D124129A200845BD0 /* ComRrfComponentVas.bundle in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8D5B49B6048680CD000E48DA /* ComRrfComponentVas.bundle */; };
 		4070BA6B123E5A1900CDF821 /* SampleDefinition.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4070BA6A123E5A1900CDF821 /* SampleDefinition.plist */; };
 		408FA96B12394C440024DD3B /* BooleanOption.xib in Resources */ = {isa = PBXBuildFile; fileRef = 408FA96612394C440024DD3B /* BooleanOption.xib */; };
 		408FA96C12394C440024DD3B /* EnumOption.xib in Resources */ = {isa = PBXBuildFile; fileRef = 408FA96712394C440024DD3B /* EnumOption.xib */; };
@@ -30,23 +32,22 @@
 		40DAF2A112366F630003B6F9 /* Mock_AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 40DAF2A012366F630003B6F9 /* Mock_AppDelegate.m */; };
 		40DB66BD1239366D003722F9 /* TKUtility.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 404A776A1222D15300B4CD5B /* TKUtility.framework */; };
 		40DB66C7123936FC003722F9 /* TKUtility.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 404A776A1222D15300B4CD5B /* TKUtility.framework */; };
-		40E6820F12342157004E2CB0 /* ComRrfComponentVasMainNib.xib in Resources */ = {isa = PBXBuildFile; fileRef = 40E6820E12342157004E2CB0 /* ComRrfComponentVasMainNib.xib */; };
 		40FBCB931239400E0045D8D3 /* manifest.plist in Resources */ = {isa = PBXBuildFile; fileRef = 404A77631222BD2D00B4CD5B /* manifest.plist */; };
 		8D5B49B0048680CD000E48DA /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C167DFE841241C02AAC07 /* InfoPlist.strings */; };
 		8D5B49B4048680CD000E48DA /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7ADFEA557BF11CA2CBB /* Cocoa.framework */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXContainerItemProxy section */
-		40DAF142123536EB0003B6F9 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 089C1669FE841209C02AAC07 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 8D5B49AC048680CD000E48DA;
-			remoteInfo = ComRrfComponentVas;
-		};
-/* End PBXContainerItemProxy section */
-
 /* Begin PBXCopyFilesBuildPhase section */
+		406A240B1241297E00845BD0 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				406A240D124129A200845BD0 /* ComRrfComponentVas.bundle in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		40DAF141123536DB0003B6F9 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -75,6 +76,7 @@
 		089C167FFE841241C02AAC07 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
 		1058C7ADFEA557BF11CA2CBB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
 		32DBCF630370AF2F00C91783 /* ComRrfComponentVas_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ComRrfComponentVas_Prefix.pch; sourceTree = "<group>"; };
+		401C312F1242572A005D725E /* ComRrfComponentVasMainNib.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ComRrfComponentVasMainNib.xib; sourceTree = "<group>"; };
 		404A77631222BD2D00B4CD5B /* manifest.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = manifest.plist; sourceTree = "<group>"; };
 		404A77671222D00400B4CD5B /* ComRrfComponentVasController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ComRrfComponentVasController.h; sourceTree = "<group>"; };
 		404A77681222D00400B4CD5B /* ComRrfComponentVasController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ComRrfComponentVasController.m; sourceTree = "<group>"; };
@@ -106,7 +108,6 @@
 		40DAF26912365C600003B6F9 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		40DAF29F12366F630003B6F9 /* Mock_AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Mock_AppDelegate.h; sourceTree = "<group>"; };
 		40DAF2A012366F630003B6F9 /* Mock_AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Mock_AppDelegate.m; sourceTree = "<group>"; };
-		40E6820E12342157004E2CB0 /* ComRrfComponentVasMainNib.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ComRrfComponentVasMainNib.xib; sourceTree = "<group>"; };
 		8D5B49B6048680CD000E48DA /* ComRrfComponentVas.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ComRrfComponentVas.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
 		8D5B49B7048680CD000E48DA /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D2F7E65807B2D6F200F64583 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = /System/Library/Frameworks/CoreData.framework; sourceTree = "<absolute>"; };
@@ -161,8 +162,8 @@
 				8D5B49B7048680CD000E48DA /* Info.plist */,
 				089C167DFE841241C02AAC07 /* InfoPlist.strings */,
 				404A77631222BD2D00B4CD5B /* manifest.plist */,
-				40E6820E12342157004E2CB0 /* ComRrfComponentVasMainNib.xib */,
 				4070BA6A123E5A1900CDF821 /* SampleDefinition.plist */,
+				401C312F1242572A005D725E /* ComRrfComponentVasMainNib.xib */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -263,11 +264,11 @@
 				40DAF118123536240003B6F9 /* Sources */,
 				40DAF119123536240003B6F9 /* Frameworks */,
 				40DB66CF1239370B003722F9 /* CopyFiles */,
+				406A240B1241297E00845BD0 /* CopyFiles */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				40DAF143123536EB0003B6F9 /* PBXTargetDependency */,
 			);
 			name = MockApplication;
 			productName = MockApplication;
@@ -334,7 +335,7 @@
 			files = (
 				8D5B49B0048680CD000E48DA /* InfoPlist.strings in Resources */,
 				404A77641222BD2D00B4CD5B /* manifest.plist in Resources */,
-				40E6820F12342157004E2CB0 /* ComRrfComponentVasMainNib.xib in Resources */,
+				401C31301242572A005D725E /* ComRrfComponentVasMainNib.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -366,14 +367,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		40DAF143123536EB0003B6F9 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 8D5B49AC048680CD000E48DA /* ComRrfComponentVas */;
-			targetProxy = 40DAF142123536EB0003B6F9 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		089C167DFE841241C02AAC07 /* InfoPlist.strings */ = {

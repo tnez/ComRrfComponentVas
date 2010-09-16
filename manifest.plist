@@ -6,6 +6,8 @@
 	<real>0</real>
 	<key>TKComponentName</key>
 	<string>Visual Analog Scale</string>
+	<key>TKComponentBundleName</key>
+	<string>ComRrfComponentVas</string>
 	<key>TKComponentBundleIdentifier</key>
 	<string>com.rrf.component.vas</string>
 	<key>TKComponentOptions</key>

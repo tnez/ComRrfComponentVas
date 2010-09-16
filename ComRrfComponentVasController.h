@@ -37,7 +37,7 @@
 
 /** INTERNAL ELEMENTS */
 @property (retain) TKQuestion                       *currentQuestion;
-@property (readonly) NSString                       *errorLog;
+@property (nonatomic, retain) NSString              *errorLog;
 
 /** REFERENCED ELEMENTS */
 @property (assign) TKComponentController            *delegate;

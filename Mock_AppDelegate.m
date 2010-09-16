@@ -100,6 +100,7 @@ componentDefinition,setupWindow,sessionWindow,presentedOptions,errorLog;
     // populate universal manifest info
     [componentDefinition setValue:[manifest valueForKey:TKComponentTypeKey] forKey:TKComponentTypeKey];
     [componentDefinition setValue:[manifest valueForKey:TKComponentNameKey] forKey:TKComponentNameKey];
+    [componentDefinition setValue:[manifest valueForKey:TKComponentBundleNameKey] forKey:TKComponentBundleNameKey];    
     [componentDefinition setValue:[manifest valueForKey:TKComponentBundleIdentifierKey] forKey:TKComponentBundleIdentifierKey];
 
     // populate options
@@ -150,9 +151,11 @@ componentDefinition,setupWindow,sessionWindow,presentedOptions,errorLog;
     // if component is good to go...
     if([component isClearedToBegin]) {
         // ...go
+        NSLog(@"Component cleared to begin");
         [component begin];
     } else { // if component is not good...
         // ...
+        NSLog(@"Component not cleared to begin");
     }
 }
 

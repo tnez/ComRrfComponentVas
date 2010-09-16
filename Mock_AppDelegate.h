@@ -51,7 +51,6 @@
 - (IBAction)run: (id)sender;
 - (IBAction)runWithSample: (id)sender;
 - (IBAction)preflight: (id)sender;
-- (IBAction)preflightWithSample: (id)sender;
 
 /** INTERNAL METHODS */
 - (void)createDefinition;

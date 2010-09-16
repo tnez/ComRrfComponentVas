@@ -16,6 +16,7 @@
     width = marginLeft + marginRight;
     height = marginTop + marginBottom;
     [self setAutoresizesSubviews:NO];
+    [self setNeedsDisplay:YES];
 }
 
 - (id)initWithFrame:(NSRect)frame {

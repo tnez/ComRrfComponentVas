@@ -104,10 +104,16 @@
     /** Load Nib */
     if([NSBundle loadNibNamed:ComRrfComponentVasNibName owner:self]) {
         // configure interface
+        NSLog(@"Ticks: %@",[[definition valueForKey:TKVasNumberOfTickMarksKey] stringValue]);
         [slider setNumberOfTickMarks:[[definition valueForKey:TKVasNumberOfTickMarksKey] integerValue]];
+        NSLog(@"Min: %d",[[definition valueForKey:TKVasMinValueKey] integerValue];
         [slider setMinValue:[[definition valueForKey:TKVasMinValueKey] doubleValue]];
+        NSLog(@"Max: %d",[[definition valueForKey:TKVasMaxValueKey] integerValue];
         [slider setMaxValue:[[definition valueForKey:TKVasMaxValueKey] doubleValue]];
+        NSLog(@"Left Prompt Should Be: %@",[definition valueForKey:TKVasLeftPromptKey]);
+        NSLog(@"Current value for left prompt: %@",[leftPrompt stringValue]);
         [leftPrompt setStringValue:[definition valueForKey:TKVasLeftPromptKey]];
+        NSLog(@"New value for left prompt: %@",[leftPrompt stringValue]);
         [middlePrompt setStringValue:[definition valueForKey:TKVasMiddlePromptKey]];
         [rightPrompt setStringValue:[definition valueForKey:TKVasRightPromptKey]];
     } else { // nib did not load

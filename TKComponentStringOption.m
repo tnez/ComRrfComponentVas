@@ -10,6 +10,7 @@
 #import "TKComponentStringOption.h"
 
 @implementation TKComponentStringOption
+@synthesize value;
 
 - (void)dealloc {
     [value release];
@@ -29,23 +30,11 @@
     return allowsNull || [value length] > 0;
 }
 
-- (void)setValue: (NSString *)newValue {
-    NSString *oldValue = [self value];
-    if(![oldValue isEqualToString:newValue]) {
-        value = [newValue retain];
-        [oldValue release];
-    }
-}
-
 - (IBAction)validate: (id)sender {
     [self setErrorMessage:nil];
     if(![self isValid]) {
         [self setErrorMessage:@"Value must not be nil"];
     }
-}
-
-- (NSString *)value {
-    return (NSString *)value;
 }
 
 @end

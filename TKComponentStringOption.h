@@ -23,8 +23,6 @@
 
 - (IBAction)validate: (id)sender;
 
-- (NSString *)value;
-
 @end
 
 extern NSString * const TKComponentStringOptionNibNameKey;

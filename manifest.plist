@@ -188,6 +188,34 @@
 			<key>help</key>
 			<string>Prompt displayed below middle of scale</string>
 		</dict>
+		<dict>
+			<key>optionIdentifier</key>
+			<string>TKVasMinValue</string>
+			<key>displayName</key>
+			<string>Minimum Slider Value</string>
+			<key>type</key>
+			<integer>1</integer>
+			<key>default</key>
+			<integer>0</integer>
+			<key>allowsEdit</key>
+			<true/>
+			<key>allowsNull</key>
+			<false/>
+		</dict>
+		<dict>
+			<key>optionIdentifier</key>
+			<string>TKVasMaxValue</string>
+			<key>displayName</key>
+			<string>Maximum Slider Value</string>
+			<key>type</key>
+			<integer>1</integer>
+			<key>default</key>
+			<integer>99</integer>
+			<key>allowsEdit</key>
+			<true/>
+			<key>allowsNull</key>
+			<false/>
+		</dict>
 	</array>
 </dict>
 </plist>

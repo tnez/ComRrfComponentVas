@@ -23,16 +23,16 @@
     /** REFERENCED ELEMENTS */
     id <TKComponentBundleDelegate>                  delegate;
     NSDictionary                                    *definition;
-    
+
     /** UI ELEMENTS */
     IBOutlet NSView                                 *view;
     IBOutlet NSTextField                            *text;
-    IBOutlet NSSlider                               *slider;    
+    IBOutlet NSSlider                               *slider;
     IBOutlet NSTextField                            *leftPrompt;
     IBOutlet NSTextField                            *middlePrompt;
     IBOutlet NSTextField                            *rightPrompt;
     IBOutlet NSButton                               *button;
-    
+
 }
 
 /** INTERNAL ELEMENTS */
@@ -44,8 +44,9 @@
 @property (assign) NSDictionary                     *definition;
 
 /** UI ELEMENTS */
+@property (assign) IBOutlet NSView                  *view;
 @property (assign) IBOutlet NSTextField             *text;
-@property (assign) IBOutlet NSSlider                *slider;    
+@property (assign) IBOutlet NSSlider                *slider;
 @property (assign) IBOutlet NSTextField             *leftPrompt;
 @property (assign) IBOutlet NSTextField             *middlePrompt;
 @property (assign) IBOutlet NSTextField             *rightPrompt;

@@ -30,21 +30,40 @@ componentDefinition,setupWindow,sessionWindow,presentedOptions,errorLog;
 }
 
 - (void)awakeFromNib {
+
+    // register for notifications
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(theComponentWillBegin:)
+                                                 name:TKComponentWillBeginNotification
+                                               object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(theComponentDidBegin:)
+                                                 name:TKComponentDidBeginNotification
+                                               object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(theComponentDidFinish:)
+                                                 name:TKComponentDidFinishNotification
+                                               object:nil];
+
     // reset error log
     errorLog = nil;
+
     // read manifest
     [self setManifest:[NSDictionary dictionaryWithContentsOfFile:
                        [[NSBundle mainBundle] pathForResource:@"manifest" ofType:@"plist"]]];
+
     // get options
     [self setPresentedOptions:[NSMutableArray array]];
     [self setComponentOptions:[NSArray arrayWithArray:
                                [manifest valueForKey:TKComponentOptionsKey]]];
     [self setComponentDefinition:[[NSMutableDictionary alloc] init]];
-    
+
+
     // load component config view
     componentConfigView =
         [[TKComponentConfigurationView alloc] initWithFrame:[leftView frame]];
     [componentConfigView setMargins:10.0];
+
     // for each option add a subview
     id tmp = nil;
     for(id option in componentOptions) {
@@ -61,46 +80,50 @@ componentDefinition,setupWindow,sessionWindow,presentedOptions,errorLog;
                           initWithDictionary:option];
                 [componentConfigView addSubview:[tmp view]];
                 [presentedOptions addObject:tmp];
-                [tmp release]; tmp=nil;                
+                [tmp release]; tmp=nil;
                 break;
             case TKComponentOptionTypeBoolean:
                 tmp = [[TKComponentBooleanOption alloc]
                           initWithDictionary:option];
                 [componentConfigView addSubview:[tmp view]];
                 [presentedOptions addObject:tmp];
-                [tmp release]; tmp=nil;                
+                [tmp release]; tmp=nil;
                 break;
             case TKComponentOptionTypePath:
                 tmp = [[TKComponentPathOption alloc]
                           initWithDictionary:option];
                 [componentConfigView addSubview:[tmp view]];
                 [presentedOptions addObject:tmp];
-                [tmp release]; tmp=nil;                
+                [tmp release]; tmp=nil;
                 break;
             case TKComponentOptionTypeEnum:
                 tmp = [[TKComponentEnumOption alloc]
                           initWithDictionary:option];
                 [componentConfigView addSubview:[tmp view]];
                 [presentedOptions addObject:tmp];
-                [tmp release]; tmp=nil;                
+                [tmp release]; tmp=nil;
                 break;
             default:
                 break;
         }   // end switch
     }       // end for
+
     // add component view to left view
     [leftView setDocumentView:componentConfigView];
+
     // display views
     [componentConfigView setNeedsDisplay:YES];
     [leftView setNeedsDisplay:YES];
+    [[leftView superview] setNeedsDisplay:YES];
+
 }
 
 - (void)createDefinition {
-    
+
     // populate universal manifest info
     [componentDefinition setValue:[manifest valueForKey:TKComponentTypeKey] forKey:TKComponentTypeKey];
     [componentDefinition setValue:[manifest valueForKey:TKComponentNameKey] forKey:TKComponentNameKey];
-    [componentDefinition setValue:[manifest valueForKey:TKComponentBundleNameKey] forKey:TKComponentBundleNameKey];    
+    [componentDefinition setValue:[manifest valueForKey:TKComponentBundleNameKey] forKey:TKComponentBundleNameKey];
     [componentDefinition setValue:[manifest valueForKey:TKComponentBundleIdentifierKey] forKey:TKComponentBundleIdentifierKey];
 
     // populate options
@@ -108,55 +131,49 @@ componentDefinition,setupWindow,sessionWindow,presentedOptions,errorLog;
         [componentDefinition setValue:[option value]
                                forKey:[option optionKeyName]];
     }
-    
+
     // DEBUG: write definition for debugging
     [componentDefinition writeToFile:@"/Users/tnesland/Desktop/definition.plist" atomically:NO];
-    
+
 }
-    
+
 - (IBAction)preflight: (id)sender {
 
     // create definition from options
     [self createDefinition];
-     
+
     // create component
     component = [[TKComponentController loadFromDefinition:componentDefinition] retain];
-    
+
     // setup component
     [component setSubject:subject];
-    [component setSessionWindow:setupWindow];
-    
+    [component setSessionWindow:sessionWindow];
+
     // test
     [self setErrorLog:[component preflightAndReturnErrorAsString]];
-    
+
     // give back component
     [component release];
 }
-    
+
 - (IBAction) run: (id)sender {
-    
+
     // create definition
     [self createDefinition];
-    
+
     // create component
     component = [[TKComponentController loadFromDefinition:componentDefinition] retain];
-    
+
     // load session window
     [NSBundle loadNibNamed:@"SessionWindow" owner:self];
-    
+
     // setup component
     [component setSubject:subject];
-    [component setSessionWindow:setupWindow];
-    
-    // if component is good to go...
-    if([component isClearedToBegin]) {
-        // ...go
-        NSLog(@"Component cleared to begin");
-        [component begin];
-    } else { // if component is not good...
-        // ...
-        NSLog(@"Component not cleared to begin");
-    }
+    [component setSessionWindow:sessionWindow];
+
+    // begin component
+    [component begin];
+
 }
 
 - (IBAction) runWithSample: (id)sender {
@@ -164,17 +181,17 @@ componentDefinition,setupWindow,sessionWindow,presentedOptions,errorLog;
     // create component definition
     [self setComponentDefinition:[NSDictionary dictionaryWithContentsOfFile:
                                   [[NSBundle mainBundle] pathForResource:@"SampleDefinition" ofType:@"plist"]]];
-    
+
     // create component
     component = [[TKComponentController loadFromDefinition:componentDefinition] retain];
-    
+
     // load session window
     [NSBundle loadNibNamed:@"SessionWindow" owner:self];
-    
+
     // setup component
     [component setSubject:subject];
     [component setSessionWindow:setupWindow];
-    
+
     // if component is good to go...
     if([component isClearedToBegin]) {
         // ...go
@@ -183,6 +200,34 @@ componentDefinition,setupWindow,sessionWindow,presentedOptions,errorLog;
         // ...
     }
 }
-        
-    
+
+- (void)theComponentWillBegin: (NSNotification *)aNote {
+
+    NSLog(@"The component will begin");
+
+    // start timer
+    [NSThread detachNewThreadSelector:@selector(spawnAndBeginTimer:) toTarget:[TKTimer class] withObject:nil];
+    NSLog(@"Session timer started");
+
+    // start logs
+    [NSThread detachNewThreadSelector:@selector(spawnMainLogger:) toTarget:[TKLogging class] withObject:nil];
+    [NSThread detachNewThreadSelector:@selector(spawnCrashRecoveryLogger:) toTarget:[TKLogging class] withObject:nil];
+    NSLog(@"Session logs started");
+
+    [component setMainLog:[TKLogging mainLogger]];
+    [component setCrashLog:[TKLogging crashRecoveryLogger]];
+    // TODO: add timer
+}
+
+- (void)theComponentDidBegin: (NSNotification *)aNote {
+    NSLog(@"The component did begin");
+
+}
+
+- (void)theComponentDidFinish: (NSNotification *)aNote {
+    NSLog(@"The component did finish");
+    [[TKLibrary sharedLibrary] exitFullScreenWithWindow:sessionWindow];
+    [sessionWindow close];
+}
+
 @end

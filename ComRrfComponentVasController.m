@@ -11,7 +11,7 @@
 
 @implementation ComRrfComponentVasController
 
-@synthesize currentQuestion,errorLog,delegate,definition,text,slider,leftPrompt,middlePrompt,rightPrompt,button;
+@synthesize currentQuestion,errorLog,delegate,definition,view,text,slider,leftPrompt,middlePrompt,rightPrompt,button;
 
 #pragma mark Housekeeping
 - (void)dealloc {
@@ -58,7 +58,7 @@
     }
 }
 - (void)registerError: (NSString *)theError {
-    [self setErrorLog:[[errorLog stringByAppendingString:@"\n"] stringByAppendingString:theError]];
+    [self setErrorLog:[[errorLog stringByAppendingString:theError] stringByAppendingString:@"\n"]];
 }
 
 #pragma mark Component Protocol
@@ -82,10 +82,35 @@
     // TODO: implement crash recovery
 }
 - (void)setup {
-    
+
     /** Reset Error Log */
     [self setErrorLog:@""];
-    
+
+    /** Check Data Directory - and try to create if !exist */
+    BOOL exists, isDirectory;
+    exists = [[NSFileManager defaultManager]
+              fileExistsAtPath:[[definition valueForKey:TKComponentDataDirectoryKey] stringByStandardizingPath]
+                                            isDirectory:&isDirectory];
+    if(exists) {
+        if(isDirectory) {
+            // expected case - file exists and is directory: do nothing
+        } else {
+            [self registerError:[NSString stringWithFormat:@"Data directory: %@ is not valid",
+                                 [[definition valueForKey:TKComponentDataDirectoryKey] stringByStandardizingPath]]];
+        }
+    } else {
+        // try to create directory
+        NSError *creationError = nil;
+        [[NSFileManager defaultManager] createDirectoryAtPath:[[definition valueForKey:TKComponentDataDirectoryKey] stringByStandardizingPath]
+                                  withIntermediateDirectories:YES attributes:nil error:&creationError];
+        if(creationError) { // there was an error creating the directory
+            [self registerError:[NSString stringWithFormat:@"Could not create data directory: %@",
+                                 [[definition valueForKey:TKComponentDataDirectoryKey] stringByStandardizingPath]]];
+        } else { // there was no error creating the directory
+            // no error to report: do nothing
+        }
+    }
+
     /** Load Questions */
     questions = [[TKQuestionSet questionSetFromFile:[definition valueForKey:TKVasQuestionFileKey]
                                   usingAccessMethod:[[definition valueForKey:TKVasQuestionAccessMethodKey] unsignedIntegerValue]] retain];
@@ -100,20 +125,14 @@
     } else { //questions did not load
         [self registerError:[NSString stringWithFormat:@"Could not load questions from file: %@",[definition valueForKey:TKVasQuestionFileKey]]];
     }
-    
+
     /** Load Nib */
     if([NSBundle loadNibNamed:ComRrfComponentVasNibName owner:self]) {
         // configure interface
-        NSLog(@"Ticks: %@",[[definition valueForKey:TKVasNumberOfTickMarksKey] stringValue]);
         [slider setNumberOfTickMarks:[[definition valueForKey:TKVasNumberOfTickMarksKey] integerValue]];
-        NSLog(@"Min: %d",[[definition valueForKey:TKVasMinValueKey] integerValue];
         [slider setMinValue:[[definition valueForKey:TKVasMinValueKey] doubleValue]];
-        NSLog(@"Max: %d",[[definition valueForKey:TKVasMaxValueKey] integerValue];
         [slider setMaxValue:[[definition valueForKey:TKVasMaxValueKey] doubleValue]];
-        NSLog(@"Left Prompt Should Be: %@",[definition valueForKey:TKVasLeftPromptKey]);
-        NSLog(@"Current value for left prompt: %@",[leftPrompt stringValue]);
         [leftPrompt setStringValue:[definition valueForKey:TKVasLeftPromptKey]];
-        NSLog(@"New value for left prompt: %@",[leftPrompt stringValue]);
         [middlePrompt setStringValue:[definition valueForKey:TKVasMiddlePromptKey]];
         [rightPrompt setStringValue:[definition valueForKey:TKVasRightPromptKey]];
     } else { // nib did not load

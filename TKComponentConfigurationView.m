@@ -50,7 +50,7 @@
     [theSubview setNeedsDisplay:YES];
     [self setNeedsDisplay:YES];
 }
-    
+
 - (BOOL)isFlipped {
     return YES; // do this so origin is top left
 }
@@ -65,8 +65,8 @@
     marginRight     = newValue;
     marginTop       = newValue;
     marginBottom    = newValue;
-    height          = marginTop + marginBottom;
-    width           = marginLeft + marginRight;
+    height          = marginTop + marginBottom + height;
+    width           = marginLeft + marginRight + width;
     // for each subview...
     for(NSView *v in [self subviews]) {
         // update frame origin

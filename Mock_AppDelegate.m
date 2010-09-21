@@ -21,6 +21,9 @@
 componentDefinition,setupWindow,sessionWindow,presentedOptions,errorLog;
 
 - (void)dealloc {
+    // remove notifications
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    // release objects
     [manifest release];
     [componentOptions release];
     [componentDefinition release];
@@ -30,6 +33,8 @@ componentDefinition,setupWindow,sessionWindow,presentedOptions,errorLog;
 }
 
 - (void)awakeFromNib {
+    // clear any old components
+    component = nil;
 
     // register for notifications
     [[NSNotificationCenter defaultCenter] addObserver:self
@@ -49,15 +54,13 @@ componentDefinition,setupWindow,sessionWindow,presentedOptions,errorLog;
     errorLog = nil;
 
     // read manifest
-    [self setManifest:[NSDictionary dictionaryWithContentsOfFile:
-                       [[NSBundle mainBundle] pathForResource:@"manifest" ofType:@"plist"]]];
+    [self setManifest:MANIFEST];
 
     // get options
     [self setPresentedOptions:[NSMutableArray array]];
     [self setComponentOptions:[NSArray arrayWithArray:
                                [manifest valueForKey:TKComponentOptionsKey]]];
     [self setComponentDefinition:[[NSMutableDictionary alloc] init]];
-
 
     // load component config view
     componentConfigView =
@@ -131,11 +134,8 @@ componentDefinition,setupWindow,sessionWindow,presentedOptions,errorLog;
         [componentDefinition setValue:[option value]
                                forKey:[option optionKeyName]];
     }
-
-    // DEBUG: write definition for debugging
-    [componentDefinition writeToFile:@"/Users/tnesland/Desktop/definition.plist" atomically:NO];
-
 }
+
 
 - (IBAction)preflight: (id)sender {
 
@@ -153,7 +153,7 @@ componentDefinition,setupWindow,sessionWindow,presentedOptions,errorLog;
     [self setErrorLog:[component preflightAndReturnErrorAsString]];
 
     // give back component
-    [component release];
+    [component release]; component = nil;
 }
 
 - (IBAction) run: (id)sender {
@@ -163,9 +163,6 @@ componentDefinition,setupWindow,sessionWindow,presentedOptions,errorLog;
 
     // create component
     component = [[TKComponentController loadFromDefinition:componentDefinition] retain];
-
-    // load session window
-    [NSBundle loadNibNamed:@"SessionWindow" owner:self];
 
     // setup component
     [component setSubject:subject];
@@ -184,9 +181,6 @@ componentDefinition,setupWindow,sessionWindow,presentedOptions,errorLog;
 
     // create component
     component = [[TKComponentController loadFromDefinition:componentDefinition] retain];
-
-    // load session window
-    [NSBundle loadNibNamed:@"SessionWindow" owner:self];
 
     // setup component
     [component setSubject:subject];
@@ -213,10 +207,9 @@ componentDefinition,setupWindow,sessionWindow,presentedOptions,errorLog;
     [NSThread detachNewThreadSelector:@selector(spawnMainLogger:) toTarget:[TKLogging class] withObject:nil];
     [NSThread detachNewThreadSelector:@selector(spawnCrashRecoveryLogger:) toTarget:[TKLogging class] withObject:nil];
     NSLog(@"Session logs started");
-
-    [component setMainLog:[TKLogging mainLogger]];
-    [component setCrashLog:[TKLogging crashRecoveryLogger]];
-    // TODO: add timer
+    
+    // bring up the session window
+    [sessionWindow makeKeyAndOrderFront:self];
 }
 
 - (void)theComponentDidBegin: (NSNotification *)aNote {
@@ -228,6 +221,7 @@ componentDefinition,setupWindow,sessionWindow,presentedOptions,errorLog;
     NSLog(@"The component did finish");
     [[TKLibrary sharedLibrary] exitFullScreenWithWindow:sessionWindow];
     [sessionWindow close];
+    [component release]; component = nil;
 }
 
 @end

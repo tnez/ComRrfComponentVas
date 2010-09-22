@@ -48,22 +48,6 @@
 		</dict>
 		<dict>
 			<key>optionIdentifier</key>
-			<string>TKComponentCrashRecoveryFileName</string>
-			<key>displayName</key>
-			<string>Crash Recovery File Name</string>
-			<key>type</key>
-			<integer>0</integer>
-			<key>default</key>
-			<string>TKVAS.CR</string>
-			<key>allowsEdit</key>
-			<false/>
-			<key>allowsNull</key>
-			<false/>
-			<key>help</key>
-			<string>Name for file in which this component&apos;s recovery information is stored</string>
-		</dict>
-		<dict>
-			<key>optionIdentifier</key>
 			<string>TKVasQuestionFile</string>
 			<key>displayName</key>
 			<string>Question File</string>

@@ -20,7 +20,7 @@
     NSArray                                     *componentOptions;
     IBOutlet TKSubject                          *subject;
     TKComponentController                       *component;
-    
+
     /** view boxes */
     IBOutlet NSScrollView                       *leftView;
     IBOutlet NSView                             *topRightView;
@@ -29,12 +29,11 @@
     IBOutlet NSWindow                           *sessionWindow;
     TKComponentConfigurationView                *componentConfigView;
 
-    
     /** run products */
     NSMutableDictionary                         *componentDefinition;
     NSMutableArray                              *presentedOptions;
     NSString                                    *errorLog;
-    
+
 }
 
 @property (nonatomic, retain) NSDictionary          *manifest;

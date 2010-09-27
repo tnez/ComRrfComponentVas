@@ -33,6 +33,14 @@ componentDefinition,setupWindow,sessionWindow,presentedOptions,errorLog;
 }
 
 - (void)awakeFromNib {
+
+    // setup loggers and timers
+    [NSThread detachNewThreadSelector:@selector(spawnAndBeginTimer:) toTarget:[TKTimer class] withObject:nil];
+    NSLog(@"Session timer started");
+    [NSThread detachNewThreadSelector:@selector(spawnMainLogger:) toTarget:[TKLogging class] withObject:nil];
+    [NSThread detachNewThreadSelector:@selector(spawnCrashRecoveryLogger:) toTarget:[TKLogging class] withObject:nil];
+    NSLog(@"Session logs started");
+
     // clear any old components
     component = nil;
 
@@ -198,16 +206,6 @@ componentDefinition,setupWindow,sessionWindow,presentedOptions,errorLog;
 - (void)theComponentWillBegin: (NSNotification *)aNote {
 
     NSLog(@"The component will begin");
-
-    // start timer
-    [NSThread detachNewThreadSelector:@selector(spawnAndBeginTimer:) toTarget:[TKTimer class] withObject:nil];
-    NSLog(@"Session timer started");
-
-    // start logs
-    [NSThread detachNewThreadSelector:@selector(spawnMainLogger:) toTarget:[TKLogging class] withObject:nil];
-    [NSThread detachNewThreadSelector:@selector(spawnCrashRecoveryLogger:) toTarget:[TKLogging class] withObject:nil];
-    NSLog(@"Session logs started");
-    
     // bring up the session window
     [sessionWindow makeKeyAndOrderFront:self];
 }
@@ -220,7 +218,6 @@ componentDefinition,setupWindow,sessionWindow,presentedOptions,errorLog;
 - (void)theComponentDidFinish: (NSNotification *)aNote {
     NSLog(@"The component did finish");
     [[TKLibrary sharedLibrary] exitFullScreenWithWindow:sessionWindow];
-    [sessionWindow close];
     [component release]; component = nil;
 }
 

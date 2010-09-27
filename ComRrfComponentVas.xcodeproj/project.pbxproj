@@ -36,6 +36,16 @@
 		8D5B49B4048680CD000E48DA /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7ADFEA557BF11CA2CBB /* Cocoa.framework */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		404746D2124FA0FB00CABE5E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 089C1669FE841209C02AAC07 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8D5B49AC048680CD000E48DA;
+			remoteInfo = ComRrfComponentVas;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXCopyFilesBuildPhase section */
 		406A240B1241297E00845BD0 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
@@ -266,6 +276,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				404746D3124FA0FB00CABE5E /* PBXTargetDependency */,
 			);
 			name = MockApplication;
 			productName = MockApplication;
@@ -363,6 +374,14 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		404746D3124FA0FB00CABE5E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8D5B49AC048680CD000E48DA /* ComRrfComponentVas */;
+			targetProxy = 404746D2124FA0FB00CABE5E /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		089C167DFE841241C02AAC07 /* InfoPlist.strings */ = {

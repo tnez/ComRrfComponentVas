@@ -14,7 +14,7 @@
 	<array>
 		<dict>
 			<key>optionIdentifier</key>
-			<string>TKComponentTaskName</string>
+			<string>TKVasTaskName</string>
 			<key>displayName</key>
 			<string>Task Name</string>
 			<key>type</key>
@@ -30,7 +30,7 @@
 		</dict>
 		<dict>
 			<key>optionIdentifier</key>
-			<string>TKComponentDataDirectory</string>
+			<string>TKVasDataDirectory</string>
 			<key>displayName</key>
 			<string>Data Directory</string>
 			<key>type</key>

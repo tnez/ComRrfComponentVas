@@ -65,6 +65,10 @@
 - (void)begin {
     [self next];
 }
+- (NSString *)dataDirectory {
+  return [[definition valueForKey:TKVasDataDirectoryKey]
+          stringByStandardizingPath];
+}
 - (BOOL)isClearedToBegin {
     if([errorLog isEqualToString:@""]) { // if error log is an empty string...
         return YES;
@@ -89,23 +93,23 @@
     /** Check Data Directory - and try to create if !exist */
     BOOL exists, isDirectory;
     exists = [[NSFileManager defaultManager]
-              fileExistsAtPath:[[definition valueForKey:TKComponentDataDirectoryKey] stringByStandardizingPath]
+              fileExistsAtPath:[[definition valueForKey:TKVasDataDirectoryKey] stringByStandardizingPath]
                                             isDirectory:&isDirectory];
     if(exists) {
         if(isDirectory) {
             // expected case - file exists and is directory: do nothing
         } else {
             [self registerError:[NSString stringWithFormat:@"Data directory: %@ is not valid",
-                                 [[definition valueForKey:TKComponentDataDirectoryKey] stringByStandardizingPath]]];
+                                 [[definition valueForKey:TKVasDataDirectoryKey] stringByStandardizingPath]]];
         }
     } else {
         // try to create directory
         NSError *creationError = nil;
-        [[NSFileManager defaultManager] createDirectoryAtPath:[[definition valueForKey:TKComponentDataDirectoryKey] stringByStandardizingPath]
+        [[NSFileManager defaultManager] createDirectoryAtPath:[[definition valueForKey:TKVasDataDirectoryKey] stringByStandardizingPath]
                                   withIntermediateDirectories:YES attributes:nil error:&creationError];
         if(creationError) { // there was an error creating the directory
             [self registerError:[NSString stringWithFormat:@"Could not create data directory: %@",
-                                 [[definition valueForKey:TKComponentDataDirectoryKey] stringByStandardizingPath]]];
+                                 [[definition valueForKey:TKVasDataDirectoryKey] stringByStandardizingPath]]];
         } else { // there was no error creating the directory
             // no error to report: do nothing
         }
@@ -143,6 +147,9 @@
 - (BOOL)shouldRecover {
     return [[NSFileManager defaultManager] fileExistsAtPath:[delegate defaultTempFile]];
 }
+- (NSString *)taskName {
+  return [definition valueForKey:TKVasTaskNameKey];
+}
 - (void)tearDown {
     // remove temporary data file
     [[NSFileManager defaultManager] removeItemAtPath:[[delegate tempDirectory] stringByAppendingPathComponent:[delegate defaultTempFile]] error:NULL];
@@ -150,6 +157,8 @@
 @end
 
 #pragma mark Preference Keys
+NSString * const TKVasTaskNameKey = @"TKVasTaskName";
+NSString * const TKVasDataDirectoryKey = @"TKVasDataDirectory";
 NSString * const TKVasQuestionFileKey = @"TKVasQuestionFile";
 NSString * const TKVasQuestionAccessMethodKey = @"TKVasQuestionAccessMethod";
 NSString * const TKVasNumberOfIntededQuestionsKey = @"TKVasNumberOfIntendedQuestions";

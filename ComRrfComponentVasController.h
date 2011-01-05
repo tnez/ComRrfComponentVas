@@ -65,17 +65,21 @@
 
 #pragma mark Protocol
 - (void)begin;
+- (NSString *)dataDirectory;
 - (BOOL)isClearedToBegin;
 - (NSView *)mainView;
 - (NSString *)rawDataFile;
 - (void)recover;
 - (void)setup;
 - (BOOL)shouldRecover;
+- (NSString *)taskName;
 - (void)tearDown;
 
 @end
 
 #pragma mark Preference Keys
+extern NSString * const TKVasTaskNameKey;
+extern NSString * const TKVasDataDirectoryKey;
 extern NSString * const TKVasQuestionFileKey;
 extern NSString * const TKVasQuestionAccessMethodKey;
 extern NSString * const TKVasNumberOfIntededQuestionsKey;

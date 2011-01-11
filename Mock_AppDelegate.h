@@ -10,7 +10,7 @@
 #import <Cocoa/Cocoa.h>
 #import <TKUtility/TKUtility.h>
 
-#define MANIFEST [NSDictionary dictionaryWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"manifest" ofType:@"plist"]]
+#define MANIFEST [NSDictionary dictionaryWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"TKVasManifest" ofType:@"plist"]]
 
 @class TKComponentConfigurationView;
 @interface Mock_AppDelegate : NSObject {
